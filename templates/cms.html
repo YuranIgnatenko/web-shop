@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CMS panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+        table,
+        th,
+        td {
+            border: 4px solid rgb(82, 77, 100);
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            background-color: #e2c0dd;
+        }
+
+        .tabs {
+            width: 100%;
+            height: 100%;
+            padding: 0px;
+            margin: 0 auto;
+        }
+
+        .tabs>input {
+            display: none;
+        }
+
+        .tabs>div {
+            display: none;
+            padding: 12px;
+            border: 1px solid #4e92e0;
+            background: #d25f5f;
+        }
+
+        .tabs>label {
+            display: inline-block;
+            padding: 7px;
+            margin: 0 -5px -1px 0;
+            text-align: center;
+            color: #bd8989;
+            border: 1px solid #C0C0C0;
+            background: #E0E0E0;
+            cursor: pointer;
+        }
+
+        .tabs>input:checked+label {
+            color: #000000;
+            border: 5px solid #635e5e;
+            border-bottom: 3px solid #FFFFFF;
+            background: #da8282;
+        }
+
+        #tab_1:checked~#txt_1,
+        #tab_2:checked~#txt_2,
+        #tab_3:checked~#txt_3,
+        #tab_4:checked~#txt_4,
+        #tab_5:checked~#txt_5,
+        #tab_6:checked~#txt_6 {
+            display: block;
+        }
+
+        .full_size {
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+
+    <!-- ============================= -->
+
+
+    <style>
+        body {
+            font-family: Arial;
+            font-size: 100%;
+        }
+
+        /* Style the tab */
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: 2px;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #d89999;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: rgb(64, 98, 233);
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 2px solid #2c2929;
+            /* border-top: none;     */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'tab_tosite')" height="100%">Просмотр сайта</button>
+        <button class="tablinks" onclick="openTab(event, 'tab_metrics')" height="100%">Метрики сайта</button>
+        <button class="tablinks" onclick="openTab(event, 'tab_sender_email')" height="100%">Рассылка почты</button>
+        <button class="tablinks" onclick="openTab(event, 'tab_manager_banner')" height="100%">Управление
+            изображениями</button>
+        <button class="tablinks" onclick="openTab(event, 'tab_manager_const')" height="100%">Управление
+            переменными</button>
+        <button class="tablinks" onclick="openTab(event, 'tab_parser')" height="100%">Парсер сервис</button>
+        <button class="tablinks" onclick="openTab(event, 'tab_data_base')" height="100%">База данных</button>
+        <button class="tablinks" onclick="openTab(event, 'tab_orders')" height="100%">Заявки на заказы</button>
+        <button class="tablinks"><a href="/home" class="submenu-link">Перейти на сайт</a></button>
+
+
+    </div>
+
+    <!-- =================================================== -->
+    <!-- =================================================== -->
+    <!-- =================================================== -->
+    <!-- =================================================== -->
+    <!-- =================================================== -->
+
+
+    <div id="tab_metrics" class="tabcontent">
+        <iframe class="full_size" src="http://be1.ru/stat/book-rzn.ru"></iframe>
+    </div>
+
+    <!-- =================================================== -->
+
+    <div id="tab_manager_const" class="tabcontent">
+        <!-- <h4>Установленый логотип</h4>
+        <img src="{{.Path_logo_company}}" width="20%"> -->
+
+        <form action="/confirm_consts">
+            <table>
+                <tr>
+                    <th>Параметр</th>
+                    <th>Значение</th>
+                </tr>
+
+                <tr>
+                    <td>
+                        <span>Номер телефона</span>
+                    </td>
+                    <td>
+                        <input type="text" name="inp_phone" id="">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <span>Годы работы</span>
+                    </td>
+                    <td>
+                        <input type="text" name="inp_years" id="">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <span>Email адрес</span>
+                    </td>
+                    <td>
+                        <input type="text" name="inp_email" id="">
+                    </td>
+                </tr>
+            </table>
+
+            <br>
+
+            <button style="width: 25%;" type="submit">Сохранить и Применить</button>
+        </form>
+
+    </div>
+
+
+
+
+    <div id="tab_manager_banner" class="tabcontent">
+        <h4>Установленый логотип</h4>
+        <img src="{{.Path_logo_company}}" width="20%">
+        <form enctype="multipart/form-data" method="post" action="load_banner">
+            <p><input type="file" name="file">
+                <input type="submit" value="Установить Баннер">
+            </p>
+        </form>
+
+        <hr>
+        <h4>Установленый баннер</h4>
+        <img src="{{.Path_banner_home}}" width="20%">
+
+        <form enctype="multipart/form-data" method="post" action="load_logo">
+            <p><input type="file" name="file">
+                <input type="submit" value="Установить Логотип">
+            </p>
+        </form>
+
+
+
+    </div>
+
+    <!-- =================================================== -->
+
+
+    <div id="tab_parser" class="tabcontent" height="100%">
+        <table>
+            <tr>
+                <td><label>Удалить все и обновить</label></td>
+                <td>
+                    <form action="/cms_parser_update_all" method="post">
+                        <button type="submit">ОК</button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Удалить и обновить prosv.ru</label></td>
+                <td>
+                    <form action="/cms_parser_update_prosv" method="post">
+                        <button type="submit">ОК</button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Удалить и обновить agatmk.ru</label></td>
+                <td>
+                    <form action="/cms_parser_update_agat" method="post">
+                        <button type="submit">ОК</button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Удалить и отключить</label></td>
+                <td>
+                    <form action="/cms_parser_off" method="post">
+                        <button type="submit">ОК</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <!-- =================================================== -->
+
+
+    <div id="tab_data_base" class="tabcontent" height="100%">
+        <table>
+            <tr>
+                <td><label>Аккаунты администраторов</label></td>
+                <td>
+                    <form action="/">
+                        <button type="submit">Перейти</button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Аккаунты Пользователей</label></td>
+                <td>
+                    <form action="/">
+                        <button type="submit">Перейти</button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Сохраненые контакты</label></td>
+                <td>
+                    <form action="/">
+                        <button type="submit">Перейти</button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Избранное пользователей</label></td>
+                <td>
+                    <form action="/">
+                        <button type="submit">Перейти</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- =================================================== -->
+
+    <div id="tab_sender_email" class="tabcontent">
+        <iframe class="full_size" src="http://app.sendsay.ru/subscribers/import/setup?listId=pl91833"></iframe>
+    </div>
+
+    <!-- =================================================== -->
+
+    <div id="tab_tosite" class="tabcontent">
+        <iframe class="full_size" src="/home"></iframe>
+    </div>
+
+
+    <div id="tab_visit_site" class="tabcontent">
+        <a href="/home"></a>
+    </div>
+
+    <!-- =================================================== -->
+
+
+    <div id="tab_orders" class="tabcontent">
+        <table>
+            <tr>
+                <td><label>Почта для приёма заказов</label></td>
+                <td><input type="email" placeholder="ex@ex.ex" id="email_receiver"></td>
+                <td>
+                    <form action="/">
+                        <button type="submit">Сохранить</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+        <font-size=”15″ face=”Times New Roman”>
+            <table border="1" width="100%" style="background-color: cadetblue;">
+                <tr style="background-color: #ffb289;">
+                    <th>Контактное лицо</th>
+                    <th>Токен</th>
+                    <th>Телефон</th>
+                    <th>Почта</th>
+                    <th>Наименование</th>
+                    <th>Количество</th>
+                    <th>Цена</th>
+                    <th>подробнее</th>
+                </tr>
+                </font>
+
+                {{range .TargetCards}}
+                <font-size=”10″ face=”Calibri”>
+                    <tr>
+                        <td>{{.CMSNameOrders}}</td>
+                        <td>{{.CMSTokenOrders}}</td>
+                        <td>{{.CMSPhoneOrders}}</td>
+                        <td>{{.CMSEmailOrders}}</td>
+                        <td>{{.Title}}</td>
+                        <td>{{.Count}}</td>
+                        <td>{{.Price}}</td>
+                        <td style="background-color: rgb(0, 0, 0);"><a href="/cms_view_order/{{.CMSTokenOrders}}">go
+                                to.</a>
+                        </td>
+                    </tr>
+                    {{end}}
+
+            </table>
+            </font>
+    </div>
+
+
+    <!-- =================================================== -->
+
+
+    <script>
+        function openTab(evt, modeName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(modeName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+
+</body>
+
+</html>

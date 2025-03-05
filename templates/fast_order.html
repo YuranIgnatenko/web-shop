@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сделать Заказ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 18%;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .target {
+            background-color: #e8d7d7;
+
+        }
+
+        .container {
+            width: 100%;
+            background-color: #fff;
+            max-width: 60%;
+            margin: 2% auto;
+            padding: 1%;
+            border-radius: 2%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 2%;
+        }
+
+        input[type="data-text"] {
+            padding: 2%;
+        }
+
+        /* button[type="data-text"] { */
+        /* padding: 1px; */
+        /* } */
+
+        button {
+            padding: 15px 10px;
+            /* max-width: 10%;
+            min-width: 10%;
+            max-height: 10%;
+            min-height: 10%; */
+            /* background-color: #007BFF; */
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 3px 0;
+        }
+
+        .delete {
+            color: red;
+            cursor: pointer;
+            /* padding: 5px; */
+            font-size: 1500%;
+        }
+    </style>
+</head>
+
+<body style="background-color:rgb(131, 134, 136);">
+
+    <div>
+        <form action="/home">
+            <button style="background-color: rgb(224, 96, 36); " type="submit">Главная страница</button>
+        </form>
+    </div>
+
+    <div>
+        <h1 style="color: rgb(52, 69, 69);">С помощью этой формы Вы можете сделать предварительный заказ.</h1>
+    </div>
+
+
+    <div style="background-color: rgb(221, 208, 190);" class="container">
+        <div>
+            <div>
+                <img style="padding: 1%;" src="{{ .Path_logo_company}}" srcset="{{ .Path_logo_company}} 2x"
+                    alt="{{ .Company_name}}" width="100px" height="50px" />
+                <h1 style="color: rgb(78, 106, 106);">Форма заказа #{{ .NumberFastOrder }}</h1>
+            </div>
+        </div>
+            <input type="text" id="nameInput" placeholder="Контактное лицо">
+                    <br>
+                    <br>
+                    <input type="text" id="phoneInput" placeholder="Номер телефона">
+                    <br>
+                    <br>
+                    <input type="text" id="emailInput" placeholder="Электронная почта">
+                    <br>
+                    <br>
+
+                    <hr>
+
+                    <br>
+                    <div>
+                        <input type="text" style="max-width: 50%;min-width: 50%;" class="target" id="taskInput"
+                            placeholder="Наименование товара">
+                        <input type="text" style="max-width: 5%;min-width: 5%;" class="target" id="countInput"
+                            placeholder="кол-во">
+                        <button style="background-color: rgba(123, 236, 127, 0.759); max-width: 12%;min-width: 12%;"
+                            id="addTask">Добавить</button>
+                    </div>
+                    <br>
+
+                    <ul id="taskList"></ul>
+
+                    <!-- <form action="/fast_order_save" method="post"> -->
+                    <button style="background-color:  rgb(98, 228, 59);" id="saveTaskButton">Создать заказ</button>
+                    <!-- </form> -->
+        </div>
+
+
+            <script>
+                
+                
+                document.addEventListener("DOMContentLoaded", function () {
+                    let taskText  = "";
+                    let countText = "";
+                    let arrTarget = [];
+                    let arrTargetCount = [];
+                    let name = document.getElementById("nameInput");
+                    let phone = document.getElementById("phoneInput");
+                    let email = document.getElementById("emailInput");
+                    let taskInput = document.getElementById("taskInput");
+                    let countInput = document.getElementById("countInput")
+                    let addTaskButton = document.getElementById("addTask");
+                    let taskList = document.getElementById("taskList");
+                    let saveTaskButton = document.getElementById("saveTaskButton");
+                    let data_struct = {};
+
+                    addTaskButton.addEventListener("click", function () {
+                        taskText = taskInput.value.trim();
+                        countText = countInput.value.trim();
+
+                        console.log(taskText, countInput.value.trim(),countText, countInput.value)
+
+                        if (taskText !== "" || countText !== "") {
+                            let listItem = document.createElement("li");
+
+                            listItem.innerHTML = `
+                        <input style="max-width: 80%;min-width: 80%;" type="text" value="${taskText}"" disabled>
+                        <input style="max-width: 5%;min-width: 5%;" type="text" value="${countText}"" disabled>
+                        <span style="max-width: 5%;min-width: 5%;"class="delete">X</span>
+                    `;
+
+                            listItem.querySelector(".delete").addEventListener("click", function () {
+                                taskList.removeChild(listItem);
+                                //TODO DELETE FROM ARRAY
+                            });
+
+                            taskList.appendChild(listItem);
+
+                            arrTarget.push(taskText);
+                            arrTargetCount.push(countInput.value.trim());
+                        }
+                    });
+
+
+                    saveTaskButton.addEventListener("click", function () {
+
+                        data_struct = {}
+
+                        data_struct.Name = name.value.trim();
+                        data_struct.Phone = phone.value.trim();
+                        data_struct.Email = email.value.trim();
+                        data_struct.ArrTarget = arrTarget;
+                        data_struct.ArrTargetCount = arrTargetCount;
+                        data_struct.NumberFastOrder = "{{ .NumberFastOrder }}"
+
+                        fetch('http://localhost:{{ .Port }}/fast_order_save', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json; charset=UTF-8'
+                            },
+                            body: JSON.stringify(data_struct)
+                        }).then(response => {
+                            alert("Заказ успешно создан!");
+                        }).catch(error => {
+                            alert("Ошибка!");
+                        });
+
+                    });
+
+                });
+            </script>
+</body>
+
+</html>
