@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ru-ru">
+
+<head>
+
+
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<!-- <meta content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1" name="viewport"> -->
+	<meta name="viewport" content="width=1200px">
+	<title>Каталог товаров</title>
+
+
+
+	<style>
+		:root {
+
+			--mainSchemeColor: #804C3E;
+
+			/* color element */
+			--mainContrastSchemeColor: #3584a4;
+			/* hover to element */
+			--mainContrastSchemeColor-darken10: #052f3f;
+
+			--catalogTitleColor: #333;
+
+			--mainSchemeColorHover: #1a791f;
+			--mainContrastSchemeColorHover: #f5946b;
+
+			--menuBorderDarken: #7b4739;
+
+			--mainSchemeColor-darken10: #764234;
+			--mainSchemeColor-darken20: #6c382a;
+			--mainSchemeColor-darken30: #622e20;
+			--mainSchemeColor-lighten10: #8a5648;
+			--mainSchemeColor-lighten20: #946052;
+
+
+
+			--mainContrastSchemeColor-darken20: #eb8a61;
+			--mainContrastSchemeColor-darken30: #e18057;
+			--mainContrastSchemeColor-lighten10: #ffa87f;
+			--mainContrastSchemeColor-lighten20: #ffb289;
+		}
+
+		div>a>span {
+			background-color: var(--mainContrastSchemeColor);
+			color: white;
+			padding: 4px;
+			border-radius: 5px;
+		}
+
+		div>a>span:hover {
+			background-color: var(--mainContrastSchemeColor-darken10);
+		}
+
+		.link_btn {
+			background-color: var(--mainContrastSchemeColor);
+			padding: 4px;
+			border-radius: 5px;
+		}
+
+		.link_btn:hover {
+			background-color: var(--mainContrastSchemeColor-darken10);
+		}
+
+		/* .more{
+			background-color: #333;
+		} */
+	</style>
+
+	<style>
+		label {
+			display: inline-block;
+			width: 100px;
+			margin-bottom: 10px;
+		}
+
+		.item {
+			position: relative;
+		}
+
+		.bottom_location {
+			position: absolute;
+			bottom: 0px;
+		}
+
+		.down_elem {
+			display: inline-block;
+		}
+
+		.button_filter_switch {
+			background-color: var(--mainContrastSchemeColor);
+			padding: 4px;
+			border-radius: 5px;
+		}
+
+		.button_filter_switch:hover {
+			background-color: var(--mainContrastSchemeColor-darken10);
+		}
+
+		.panel_pages {
+			display: inline-block;
+		}
+	</style>
+
+	<link href="http://new15942715563356.myaddshop.ru/css/shop/themes/base/style.css?ver=1691644398" rel="stylesheet"
+		type="text/css">
+	<link href="http://new15942715563356.myaddshop.ru/css/shop/themes/templates/michigan.css?ver=1691644398"
+		rel="stylesheet" type="text/css">
+	<link href="http://new15942715563356.myaddshop.ru/css/shop/mobile.css?ver=1691644398" rel="stylesheet"
+		type="text/css" media="(max-width: 1366px)">
+
+	<script>
+		window.shop_currency = 'руб.';
+		window.shop_id = '1010';
+		window.customer_discount = '';
+		window.template_class = 'michigan';
+		window.item_img_zoom = '0';
+		window.promo_discount = null;
+		window.promo_title = null;
+		window.one_click_buy = 1;
+	</script>
+
+
+
+</head>
+
+<body class=" michigan  rate_1 shop_1010" data-template="michigan" data-color-scheme="spicy">
+	<div class="wrapper">
+
+		<header>
+			<div class="header-top">
+				<div class="inner">
+				</div>
+			</div>
+
+			<div class="header-middle">
+				<div class="inner">
+					<div class="header-middle-left">
+						<div class="logo_wrapper">
+							<a href="/home" class="logo">
+								<img/>
+							</a>
+						</div>
+					</div>
+					<div class="search_form">
+						<!-- FART ORDER  -->
+
+						<form action="/fast_mail">
+							<button style="width: 100%;" type="submit">Написать письмо*</button>
+						</form>
+
+						<br>
+
+					</div>
+
+				</div>
+			</div>
+
+	</div>
+	</header>
+	<main>
+
+		<!-- ============ -->
+		<!-- filter panel -->
+
+		<div>
+			<div>
+				<script>
+
+				</script>
+				<style>
+					.panel_block {
+						/* box-sizing: border-box; */
+					}
+
+					.filter_grid {
+						display: grid;
+						grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+						gap: 3rem;
+					}
+
+					.filter_wrapper {
+						width: 100%;
+						padding: min(1rem, 5vw);
+					}
+
+					.filter_form {
+						padding: 0.2rem;
+						background-color: rgba(245, 245, 245);
+						border-radius: 0.5rem;
+					}
+
+					.filter_legend {
+						font-weight: 700;
+					}
+
+					fieldset>*+* {
+						margin-top: 0.5rem;
+					}
+
+					.filter_form>*+* {
+						margin-top: 1.5rem;
+					}
+
+					.form__group {
+						display: flex;
+						align-items: center;
+						margin: 0px;
+					}
+
+
+
+
+					.filter_input[type="checkbox"],
+					.filter_input[type="radio"] {
+						width: 1.5em;
+						height: 1.5em;
+						margin-right: 1.65rem;
+					}
+
+					.filter_input[type="range"],
+					/* progress {
+						margin-left: auto;
+						flex: 0 1 50%;
+					} */
+
+					.filter_form:nth-child(2n) {
+						color-scheme: dark;
+						background-color: black;
+						color: white;
+					}
+
+					.filter_form{
+						padding-left: 20%;
+						padding-right: 20%;
+					}
+				</style>
+
+			</div>
+		</div>
+
+		<!-- filter panel -->
+		<!-- ============ -->
+		<hr>
+
+		<div class="block main">
+			<div class="inner">
+
+				<div class="content  ">
+					<div class="items_wrapper">
+
+						<div class="items">
+
+							{% for products in array_products: %}
+							<div class="item" data-discount-type="percent" data-discount="0.00" data-code="60797">
+
+								<div class="image">
+									<div class="bg_dark"></div>
+									<img src="{{ products.image }}" alt="{{ products.title }}" data-switch="0" width="250px"
+										height="250px" loading="lazy" />
+									<img src="{{ products.image }}" alt="{{ products.title }}" data-switch="1" style="display: none;"
+										width="250px" height="250px" />
+
+									<a href="/card_view/{{ products.title }}"></a>
+								</div>
+								<div class="item_content " data-discount="0.00">
+									<a href="/card_view/{{ products.title }}" class="descr">{{ products.title }}</a>
+									<div class="short_descr">{{ products.title }}</div>
+
+									<div class="bottom_location">
+										<div class="item_price_big down_elem">
+											<span class="new">{{ products.price }}₽</span>
+										</div>
+
+										<div class="down_elem">
+											<a class="more"
+												style="margin-bottom: 5px; padding:10px; background-color:var(--mainContrastSchemeColor);"
+												onclick="this.href='/add_favorites/{{ products.title }}/1'">В
+												корзину</a>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+
+					<hr>
+
+
+				</div>
+
+			</div>
+		</div>
+	</main>
+	</div>
+	<footer class="block">
+		<div class="top">
+		
+
+			<div class="social">
+				<a target="_blank" href="https://vk.com/magazin_rzn" class="link_vk"></a>
+				<a target="_blank" href="https://facebook.com/#" class="link_fb"></a>
+			</div>
+
+		</div>
+		</div>
+		</div>
+	</footer>
+
+
+</body>
+
+</html>

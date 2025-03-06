@@ -2,8 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import sys, json, argparse
 
-import models
-
+import services.models as models
 
 URL_DIRS = {
 	"НОУТБУКИ":"https://skypka.com/katalog/kompyuternaya-tekhnika/noutbuki-i-netbuki/?PAGEN_1=",
@@ -51,7 +50,7 @@ class Parser():
 		num = soup.find("div",class_="catalog__all-goods catalog__all-goods_bottom").text.replace("Всего", "").replace("товаров", "").strip()
 		return int(num)		
 
-	def get_products(self, url:str) -> list[models.Product]:
+	def get_products(self, url:str) -> list[ models.Product ]:
 		soup = self.get_soup(url)
 		temp_array_products = []
 		for div in soup.find_all("div", class_="product-card-item"):
@@ -59,7 +58,7 @@ class Parser():
 			price = div.find("div", class_="product-card-item__prices").find("p").text
 			image = URL_PREFIX_IMAGE + div.find("a",class_="product-card-item__image").find("img").get("src")
 			description = div.find("p", class_="product-card-item__description").text
-			temp_array_products.append(models.Product(title, price, image, description))
+			temp_array_products.append(models.Product(title, image, price, description))
 		return temp_array_products
 
 
