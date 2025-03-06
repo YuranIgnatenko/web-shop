@@ -61,13 +61,11 @@ URL_DIRS = {
 	"АВТО ЗУ":"https://skypka.com/katalog/avtoaksessuary/zaryadnye-ustroystva2/",
 	"ШИНЫ И ДИСКИ":"https://skypka.com/katalog/avtoaksessuary/kolesa/",
 
-
 	"PSP":"https://skypka.com/katalog/igrovye-pristavki/igrovaya-pristavka-psp/",
 	"SEGA":"https://skypka.com/katalog/igrovye-pristavki/igrovaya-pristavka-sega/",
 	"SONY PLAYSTATION":"https://skypka.com/katalog/igrovye-pristavki/igrovye-pristavki-sony-playstation/",
 	"XBOX":"https://skypka.com/katalog/igrovye-pristavki/igrovye-pristavki-xbox/",
 	"PSP VITA":"https://skypka.com/katalog/igrovye-pristavki/igrovaya-pristavka-psp-vita/",
-
 
 	"АКЦИИ":"https://skypka.com/katalog/sales/",
 	"ПРОЧЕЕ":"https://skypka.com/katalog/prochie-tovary/",
