@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-from parser_service import *
+from parser_service import stronikum
 
 class WebApp():
 	def __init__(self) -> None:
