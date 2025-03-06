@@ -128,39 +128,75 @@
 </head>
 
 <body class=" michigan  rate_1 shop_1010" data-template="michigan" data-color-scheme="spicy">
-	<div class="wrapper">
+<style>
+	/*| Navigation |*/
 
-		<header>
-			<div class="header-top">
-				<div class="inner">
-				</div>
-			</div>
 
-			<div class="header-middle">
-				<div class="inner">
-					<div class="header-middle-left">
-						<div class="logo_wrapper">
-							<a href="/home" class="logo">
-								<img/>
-							</a>
-						</div>
-					</div>
-					<div class="search_form">
-						<!-- FART ORDER  -->
+nav{
+background: #334; /* Задаем основной фон меню */
+padding: 0 1%; /* Задаем внутренние отступы */
+position: fixed; /* Div будет «прилипать» к экрану */
+z-index: 9999; /* Максимальное значение z-индекса */
+top: 0; /* Опционально: разместить div в верхней части окна браузера */
+left: 0; /* Опционально: разместить div в левой части окна браузера */
 
-						<form action="/fast_mail">
-							<button style="width: 100%;" type="submit">Написать письмо*</button>
-						</form>
+width: 100%;
+}
 
-						<br>
+nav ul {
+list-style: none; /* Убираем маркер для элементов списка */
+}
 
-					</div>
+nav ul li {
+display:inline-block;/*Выстраиваем пункты меню в ряд по горизонтали */
+}
 
-				</div>
-			</div>
+nav ul li a {
+display:block; /* Настраиваем оформление пунктов меню */
+padding: 15px 20px;
+font-size: .9em;
+color: #eee;
+letter-spacing: 1px;
+text-decoration: none;
+text-transform: uppercase;
+border-top: 1px solid #445;
+}
 
-	</div>
-	</header>
+nav ul li:hover {
+background: #445; /* Меняем фон пункта меню при наведении указателя мыши */
+}
+
+nav ul li ul {
+display: none; /* Прячем пункты выпадающего блока меню */
+position:absolute;
+background: #334; /* Задаем фон выпадающего блока меню */
+}
+
+nav ul li:hover ul {
+display:block; /* Отображаем подменю при наведении мыши */
+}
+
+nav ul li ul li {
+display:block; /* Выстраиваем по вертикали пункты выпадающего меню */
+}
+</style>
+	<nav role="navigation">
+		<ul>
+		  <li><a href="/">Главная</a></li>
+		  <li><a href="#">О блоге</a>
+			<ul>
+			  <li><a href="/about">Об авторе</a></li>
+			  <li><a href="/history">История блога</a></li>
+			  <li><a href="/privacy-policy">Политика конфиденциальности</a></li>
+			  <li><a href="/disclaimer">Отказ от ответственности</a></li>
+			</ul>
+		  </li>
+		  <li><a href="/sitemap">Карта сайта</a></li>
+		  <li><a href="/contact">Обратная связь</a></li>
+		</ul>
+		</nav>
+<hr>
+
 	<main>
 
 		<!-- ============ -->

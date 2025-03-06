@@ -5,7 +5,7 @@ class WebApp():
 	def __init__(self) -> None:
 		self.app = Flask(__name__)
 		self.service_parser = parser.Parser()
-		self.collection_products = self.service_parser.get_products(parser.URL_DIRS["НОУТБУКИ"])
+		self.collection_products = self.service_parser.get_products(parser.URL_DIRS["АКЦИИ"])
 		self.setup_routes()
 
 	def setup_routes(self):
@@ -21,7 +21,6 @@ class WebApp():
 				NameLogin="Admin",
 				IsAdmin=True,
 				array_products=self.collection_products,
-
 				)
 	
 	def start_app(self):
