@@ -9,35 +9,31 @@ class WebApp():
 		self.setup_routes()
 		
 
-	def render_products(self, name_category:str, key_category:str) -> str:
-		return render_template(
-				'products.html',
-				array_products = self.service_parser.get_products(parser.URL_PC["НОУТБУКИ"][0]),
-				tab_1 = parser.URL_PC,
-				tab_2 = parser.URL_GAJET,
-				tab_3 = parser.URL_PHOTO_AUDIO,
-				tab_4 = parser.URL_INSTRUMENT,
-				tab_5 = parser.URL_OTHERS,				
-				tab_6 = parser.URL_SALES,
-				)
+	def render_products(self, key:str, category:str) -> str:
+		for temp_tab in parser.URL_DIRS:
+			for key, value in temp_tab.items():
+				if value[1] == category:
+					return render_template(
+							'products.html',
+							array_products = self.service_parser.get_products(temp_tab[key][0]),
+							tab_1 = parser.URL_PC,
+							tab_2 = parser.URL_GAJET,
+							tab_3 = parser.URL_PHOTO_AUDIO,
+							tab_4 = parser.URL_INSTRUMENT,
+							tab_5 = parser.URL_OTHERS,				
+							tab_6 = parser.URL_SALES,
+							)
+
+
 
 	def setup_routes(self):
-		@self.app.route('/products')
+		@self.app.route('/<category>')
+		def route_any(category):
+			return self.render_products("",category)
+
+		@self.app.route('/')
 		def route_products():
-			return self.render_products("АКЦИИ","АКЦИИ")
-
-		@self.app.route('/noutbuki')
-		def route_noutbuki():
-			return self.render_products("НОУТБУКИ")
-
-		@self.app.route('/monitori')
-		def route_monitori():
-			return self.render_products("МОНИТОРЫ")
-				
-		@self.app.route('/sistemniebloki')
-		def route_sistemniebloki():
-			return self.render_products("СИСТЕМНЫЕ БЛОКИ")
-
+			return self.render_products("","smartfony")
 
 
 	def start_app(self):

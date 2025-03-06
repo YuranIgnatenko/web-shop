@@ -4,7 +4,6 @@ import sys, json, argparse
 
 import services.models as models
 
-URL_DIRS = {}
 
 URL_PC = {
 		"НОУТБУКИ":["https://skypka.com/katalog/kompyuternaya-tekhnika/noutbuki-i-netbuki/", "noutbuki-i-netbuki"],
@@ -15,8 +14,8 @@ URL_PC = {
 	}
 
 URL_GAJET = {
-		"СМАРТФОНЫ":["https://skypka.com/katalog/telefony-i-aksessuary/smartfony/", "telefony-i-aksessuary/smartfony"],
-		"ПЛАНШЕТЫ":["https://skypka.com/katalog/kompyuternaya-tekhnika/planshety/", "kompyuternaya-tekhnika/planshety"],
+		"СМАРТФОНЫ":["https://skypka.com/katalog/telefony-i-aksessuary/smartfony/", "smartfony"],
+		"ПЛАНШЕТЫ":["https://skypka.com/katalog/kompyuternaya-tekhnika/planshety/", "planshety"],
 		"СМАРТ-ЧАСЫ":["https://skypka.com/katalog/telefony-i-aksessuary/smart-chasy/", "smart-chasy"],
 		"ЧАСЫ":["https://skypka.com/katalog/chasy/", ""],
 		"ВИРТУАЛЬНЫЕ ОЧКИ":["https://skypka.com/katalog/telefony-i-aksessuary/virtualnye-ochki/", "virtualnye-ochki"],
@@ -86,6 +85,7 @@ URL_OTHERS = {
 
 URL_PREFIX_IMAGE = "https://skypka.com"
 
+URL_DIRS = [ URL_PC,URL_GAJET,URL_INSTRUMENT,URL_PHOTO_AUDIO,URL_SALES, URL_OTHERS ]
 
 
 class Parser():
@@ -112,7 +112,6 @@ class Parser():
 		return int(num)		
 
 	def get_products(self, url:str) -> list[ models.Product ]:
-		print("url --> ",url)
 		soup = self.get_soup(url)
 		temp_array_products = []
 		for div in soup.find_all("div", class_="product-card-item"):
