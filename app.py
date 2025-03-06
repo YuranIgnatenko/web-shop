@@ -5,19 +5,20 @@ class WebApp():
 	def __init__(self) -> None:
 		self.app = Flask(__name__)
 		self.service_parser = parser.Parser()
-		self.collection_products = self.service_parser.get_products(parser.URL_DIRS["АКЦИИ"]["АКЦИИ"])
+		self.collection_products = self.service_parser.get_products(parser.URL_SALES["АКЦИИ"][0])
 		self.setup_routes()
+		
 
 	def render_products(self, name_category:str, key_category:str) -> str:
 		return render_template(
 				'products.html',
-				array_products = self.service_parser.get_products(parser.URL_DIRS[name_category][key_category]),
-				tab_1 = parser.URL_DIRS['ГАДЖЕТЫ'],
-				tab_2 = parser.URL_DIRS['ЭЛЕТРОНИКА'],
-				tab_3 = parser.URL_DIRS['ИНСТРУМЕНТЫ'],
-				tab_4 = parser.URL_DIRS['ФОТОАУДИОТЕХНИКА'],
-				tab_5 = parser.URL_DIRS['ПРОЧЕЕ'],				
-				tab_6 = parser.URL_DIRS['АКЦИИ'],
+				array_products = self.service_parser.get_products(parser.URL_PC["НОУТБУКИ"][0]),
+				tab_1 = parser.URL_PC,
+				tab_2 = parser.URL_GAJET,
+				tab_3 = parser.URL_PHOTO_AUDIO,
+				tab_4 = parser.URL_INSTRUMENT,
+				tab_5 = parser.URL_OTHERS,				
+				tab_6 = parser.URL_SALES,
 				)
 
 	def setup_routes(self):

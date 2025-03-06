@@ -195,7 +195,7 @@ display:block; /* Выстраиваем по вертикали пункты в
 	  <li><a href="#">ГАДЖЕТЫ</a>
 		<ul>
 			{% for key, value in tab_1.items(): %}
-		  			<li><a href="{{ value }}">{{ key }}</a></li>
+		  			<li><a href="{{ value[1] }}">{{ key }}</a></li>
 		  {% endfor %}
 		</ul>
 	  </li>
@@ -203,7 +203,7 @@ display:block; /* Выстраиваем по вертикали пункты в
 	  <li><a href="#">ЭЛЕКТРОНИКА</a>
 		<ul>
 			{% for key, value in tab_2.items(): %}
-		  			<li><a href="{{ value }}">{{ key }}</a></li>
+		  			<li><a href="{{ value[1] }}">{{ key }}</a></li>
 		  {% endfor %}
 		</ul>
 	  </li>
@@ -211,7 +211,7 @@ display:block; /* Выстраиваем по вертикали пункты в
 	  <li><a href="#">ИНСТРУМЕНТЫ</a>
 		<ul>
 			{% for key, value in tab_3.items(): %}
-		  			<li><a href="{{ value }}">{{ key }}</a></li>
+		  			<li><a href="{{ value[1] }}">{{ key }}</a></li>
 		  {% endfor %}
 		</ul>
 	  </li>
@@ -219,7 +219,7 @@ display:block; /* Выстраиваем по вертикали пункты в
 	  <li><a href="#">ФОТОАУДИОТЕХНИКА</a>
 		<ul>
 			{% for key, value in tab_4.items(): %}
-		  			<li><a href="{{ value }}">{{ key }}</a></li>
+		  			<li><a href="{{ value[1] }}">{{ key }}</a></li>
 		  {% endfor %}
 		</ul>
 	  </li>
@@ -227,7 +227,7 @@ display:block; /* Выстраиваем по вертикали пункты в
 	  <li><a href="#">ПРОЧЕЕ</a>
 		<ul>
 			{% for key, value in tab_5.items(): %}
-		  			<li><a href="{{ value }}">{{ key }}</a></li>
+		  			<li><a href="{{ value[1] }}">{{ key }}</a></li>
 		  {% endfor %}
 		</ul>
 	  </li>
@@ -235,7 +235,7 @@ display:block; /* Выстраиваем по вертикали пункты в
 	  <li><a href="#">АКЦИИ</a>
 		<ul>
 			{% for key, value in tab_6.items(): %}
-		  			<li><a href="{{ value }}">{{ key }}</a></li>
+		  			<li><a href="{{ value[1] }}">{{ key }}</a></li>
 		  {% endfor %}
 		</ul>
 	  </li>
