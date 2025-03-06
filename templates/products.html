@@ -131,8 +131,18 @@
 <style>
 	/*| Navigation |*/
 
+	.nav_down {
+background: #334; /* Задаем основной фон меню */
+padding: 0 1%; /* Задаем внутренние отступы */
+position: fixed; /* Div будет «прилипать» к экрану */
+z-index: 9999; /* Максимальное значение z-индекса */
+bottom: 0;
+right: 0;
+width: 100%;
+}
 
-nav{
+
+.nav_up {
 background: #334; /* Задаем основной фон меню */
 padding: 0 1%; /* Задаем внутренние отступы */
 position: fixed; /* Div будет «прилипать» к экрану */
@@ -180,38 +190,45 @@ nav ul li ul li {
 display:block; /* Выстраиваем по вертикали пункты выпадающего меню */
 }
 </style>
-	<nav role="navigation">
+<nav  class="nav_up"  role="navigation">
+	<ul>
+	  <li><a href="/home">главная</a></li>
+	  <li><a href="#">компьтерная техника</a>
 		<ul>
-		  <li><a href="/">главная</a></li>
-		  <li><a href="/">акции</a></li>
-
-		  <li><a href="#">компьтерная техника</a>
-			<ul>
-			  <li><a href="/about">ноутбуки</a></li>
-			  <li><a href="/history">мониторы</a></li>
-			  <li><a href="/privacy-policy">системные блоки</a></li>
-			  <li><a href="/disclaimer">планшеты</a></li>
-			  <li><a href="/disclaimer">мфу</a></li>
-			  <li><a href="/disclaimer">моноблоки</a></li>
-			</ul>
-		  </li>
-
-		  <li><a href="#">телефоны и гаджеты</a>
-			<ul>
-			  <li><a href="/about">смартфоны</a></li>
-			  <li><a href="/history">смарт-часы</a></li>
-			  <li><a href="/privacy-policy">виртуальные очки</a></li>
-			  <li><a href="/disclaimer">фитнес браслеты</a></li>
-			  <li><a href="/disclaimer">электронные книги</a></li>
-			  <li><a href="/disclaimer">экшн-камеры</a></li>
-			</ul>
-		  </li>
-
-		  <li><a href="/sitemap">поддержка</a></li>
-		  <li><a href="/contact">профиль</a></li>
+		  <li><a href="/noutbuki">ноутбуки</a></li>
+		  <li><a href="/monitori">мониторы</a></li>
+		  <li><a href="/sistemniebloki">системные блоки</a></li>
+		  <li><a href="/plansheti">планшеты</a></li>
+		  <li><a href="/mfu">мфу</a></li>
+		  <li><a href="/monobloki">моноблоки</a></li>
 		</ul>
-		</nav>
+	  </li>
+
+	  <li><a href="#">телефоны и гаджеты</a>
+		<ul>
+		  <li><a href="/smartfoni">смартфоны</a></li>
+		  <li><a href="/smartchasi">смарт-часы</a></li>
+		  <li><a href="/virtualnieochki">виртуальные очки</a></li>
+		  <li><a href="/fitnesbrasleti">фитнес браслеты</a></li>
+		  <li><a href="/eleltronieknigi">электронные книги</a></li>
+		  <li><a href="/ekshnkameri">экшн-камеры</a></li>
+		</ul>
+	  </li>
+	  <li><a href="/sales">акции</a></li>
+	</ul>
+</nav>
+
 <hr>
+
+<nav class="nav_down" role="navigation">
+	<ul>
+	  <li><a href="/profile">профиль</a></li>
+	  <li><a href="/saved">корзина</a></li>
+	  <li><a href="/orders">заказы</a></li>
+	  <li><a href="/support">поддержка</a></li>
+	  <li><a href="/settings">настройки</a></li>
+	</ul>
+</nav>
 
 	<main>
 
