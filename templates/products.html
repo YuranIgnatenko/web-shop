@@ -364,17 +364,18 @@ display:block; /* Выстраиваем по вертикали пункты в
 									<a href="/card_view/{{ products.title }}" class="descr">{{ products.title }}</a>
 									<div class="short_descr">{{ products.title }}</div>
 
+									<hr>
+
 									<div class="bottom_location">
 										<div class="item_price_big down_elem">
 											<span class="new">{{ products.price }}₽</span>
 										</div>
-
-										<div class="down_elem">
-											<a class="more"
-												style="margin-bottom: 5px; padding:10px; background-color:var(--mainContrastSchemeColor);"
-												onclick="this.href='/add_favorites/{{ products.title }}/1'">В
-												корзину</a>
-										</div>
+									</div>
+									<div class="down_elem">
+										<a class="more"
+											style="margin-bottom: 5px; padding:10px; background-color:var(--mainContrastSchemeColor);"
+											onclick="this.href='/add_favorites/{{ products.title }}/1'">В
+											корзину</a>
 									</div>
 
 								</div>
