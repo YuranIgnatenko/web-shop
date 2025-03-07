@@ -50,6 +50,10 @@ class WebApp():
 		def route_settings():
 			return render_template('settings.html', settings=self.settings)
 
+		@self.app.route('/support')
+		def route_support():
+			return render_template('support.html')
+
 		@self.app.route('/orders')
 		def route_orders():
 			return render_template('orders.html')
