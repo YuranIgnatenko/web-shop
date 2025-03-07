@@ -25,15 +25,21 @@ class WebApp():
 							)
 
 
-
 	def setup_routes(self):
 		@self.app.route('/<category>')
 		def route_any(category):
 			return self.render_products("",category)
-
 		@self.app.route('/')
 		def route_products():
 			return self.render_products("","smartfony")
+
+		@self.app.route('/settings')
+		def route_settings():
+			return render_template('settings.html')
+
+		@self.app.route('/orders')
+		def route_orders():
+			return render_template('orders.html')
 
 
 	def start_app(self):
