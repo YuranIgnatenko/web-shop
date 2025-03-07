@@ -95,11 +95,13 @@
 		{% for product in array_products: %}
 		  <li class="cards_item">
 			<div class="card">
-			  <div class="card_image"><img src="{{ product.image }}"></div>
+				
+				<a href="{{ product.image }}" target="_blank">
+					<div class="card_image"><img src="{{ product.image }}"></div>
+				</a>
+			  
 			  <div class="card_content">
 				<h2 class="card_title">{{ product.title }}</h2>
-				<hr>
-				<p class="card_text">{{ product.description }}</p>
 				<hr>
 				<h2 class="card_title">{{ product.price }} ₽</h2>
 				<br>
