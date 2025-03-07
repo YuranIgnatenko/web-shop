@@ -1,12 +1,24 @@
 from flask import Flask, request, render_template
 from services import parser, models
+from config import Config
+
+class Settings():
+	def __init__(self, conf:Config):
+		self.percent_plus_price = conf.get("percent_plus_price")
+		self.num_plus_price = conf.get("num_plus_price")
+		self.period_parsing = conf.get("period_parsing")
+		self.count_cards_in_page = conf.get("count_cards_in_page")
+
 
 class WebApp():
 	def __init__(self) -> None:
+		self.conf = Config("config.json")
 		self.app = Flask(__name__)
 		self.service_parser = parser.Parser()
 		self.collection_products = self.service_parser.get_products(parser.URL_SALES["АКЦИИ"][0])
 		self.setup_routes()
+
+		self.settings = Settings(self.conf)
 		
 
 	def render_products(self, key:str, category:str) -> str:
@@ -23,11 +35,12 @@ class WebApp():
 							tab_5 = parser.URL_OTHERS,				
 							tab_6 = parser.URL_SALES,
 							)
+		return self.render_products("","smartfony")
 
 
 	def setup_routes(self):
 		@self.app.route('/<category>')
-		def route_any(category):
+		def route_a(category):
 			return self.render_products("",category)
 		@self.app.route('/')
 		def route_products():
@@ -35,7 +48,7 @@ class WebApp():
 
 		@self.app.route('/settings')
 		def route_settings():
-			return render_template('settings.html')
+			return render_template('settings.html', settings=self.settings)
 
 		@self.app.route('/orders')
 		def route_orders():
