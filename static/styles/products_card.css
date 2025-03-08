@@ -9,7 +9,7 @@
 }
 
 html {
-  background-color: #ecf9ff;
+  background-image: linear-gradient(rgb(67, 70, 77), rgba(55, 100, 144, 0.875));
 }
 
 body {
@@ -24,6 +24,7 @@ body {
 .main{
   max-width: 1200px;
   margin: 0 auto;
+  padding: 3%;
 }
 
 h1 {

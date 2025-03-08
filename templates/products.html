@@ -11,115 +11,114 @@
 	<meta name="viewport" content="width=1200px">
 	<title>Каталог товаров</title>
 
-	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/products_navigation.css') }}">
-	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/products_card.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/products_navigation.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/products_card.css') }}">
 
 </head>
 
 <body class=" michigan  rate_1 shop_1010" data-template="michigan" data-color-scheme="spicy">
 
-<nav  class="nav_up"  role="navigation">
-	<ul>
-	  <li><a href="#">ГАДЖЕТЫ</a>
+	<nav class="nav_up" role="navigation">
 		<ul>
-			{% for key, value in tab_1.items(): %}
-		  			<li><a href="{{ value[1] }}">{{ key }}</a></li>
-		  {% endfor %}
-		</ul>
-	  </li>
+			<li><a href="#">ГАДЖЕТЫ</a>
+				<ul>
+					{% for key, value in tab_1.items(): %}
+					<li><a href="{{ value[1] }}">{{ key }}</a></li>
+					{% endfor %}
+				</ul>
+			</li>
 
-	  <li><a href="#">ЭЛЕКТРОНИКА</a>
+			<li><a href="#">ЭЛЕКТРОНИКА</a>
+				<ul>
+					{% for key, value in tab_2.items(): %}
+					<li><a href="{{ value[1] }}">{{ key }}</a></li>
+					{% endfor %}
+				</ul>
+			</li>
+
+			<li><a href="#">ИНСТРУМЕНТЫ</a>
+				<ul>
+					{% for key, value in tab_3.items(): %}
+					<li><a href="{{ value[1] }}">{{ key }}</a></li>
+					{% endfor %}
+				</ul>
+			</li>
+
+			<li><a href="#">ФОТОАУДИОТЕХНИКА</a>
+				<ul>
+					{% for key, value in tab_4.items(): %}
+					<li><a href="{{ value[1] }}">{{ key }}</a></li>
+					{% endfor %}
+				</ul>
+			</li>
+
+			<li><a href="#">ПРОЧЕЕ</a>
+				<ul>
+					{% for key, value in tab_5.items(): %}
+					<li><a href="{{ value[1] }}">{{ key }}</a></li>
+					{% endfor %}
+				</ul>
+			</li>
+
+			<li><a href="#">АКЦИИ</a>
+				<ul>
+					{% for key, value in tab_6.items(): %}
+					<li><a href="{{ value[1] }}">{{ key }}</a></li>
+					{% endfor %}
+				</ul>
+			</li>
+
+		</ul>
+	</nav>
+
+	<hr>
+
+	<nav class="nav_down" role="navigation">
 		<ul>
-			{% for key, value in tab_2.items(): %}
-		  			<li><a href="{{ value[1] }}">{{ key }}</a></li>
-		  {% endfor %}
+			<li><a href="/profile">профиль</a></li>
+			<li><a href="/saved">корзина</a></li>
+			<li><a href="/orders">заказы</a></li>
+			<li><a href="/support">поддержка</a></li>
+			<li><a href="/settings">настройки</a></li>
 		</ul>
-	  </li>
-
-	  <li><a href="#">ИНСТРУМЕНТЫ</a>
-		<ul>
-			{% for key, value in tab_3.items(): %}
-		  			<li><a href="{{ value[1] }}">{{ key }}</a></li>
-		  {% endfor %}
-		</ul>
-	  </li>
-
-	  <li><a href="#">ФОТОАУДИОТЕХНИКА</a>
-		<ul>
-			{% for key, value in tab_4.items(): %}
-		  			<li><a href="{{ value[1] }}">{{ key }}</a></li>
-		  {% endfor %}
-		</ul>
-	  </li>
-
-	  <li><a href="#">ПРОЧЕЕ</a>
-		<ul>
-			{% for key, value in tab_5.items(): %}
-		  			<li><a href="{{ value[1] }}">{{ key }}</a></li>
-		  {% endfor %}
-		</ul>
-	  </li>
-
-	  <li><a href="#">АКЦИИ</a>
-		<ul>
-			{% for key, value in tab_6.items(): %}
-		  			<li><a href="{{ value[1] }}">{{ key }}</a></li>
-		  {% endfor %}
-		</ul>
-	  </li>
-
-	</ul>
-</nav>
-
-<hr>
-
-<nav class="nav_down" role="navigation">
-	<ul>
-	  <li><a href="/profile">профиль</a></li>
-	  <li><a href="/saved">корзина</a></li>
-	  <li><a href="/orders">заказы</a></li>
-	  <li><a href="/support">поддержка</a></li>
-	  <li><a href="/settings">настройки</a></li>
-	</ul>
-</nav>
+	</nav>
 
 
 
 
-<div>
+	<div>
 
-	<div class="main">
-		<h1>Responsive Card Grid Layout</h1>
-		<ul class="cards">
+		<div class="main">
+			<ul class="cards">
 
-		{% for product in array_products: %}
-		  <li class="cards_item">
-			<div class="card">
-				
-				<a href="{{ product.image }}" target="_blank">
-					<div class="card_image"><img src="{{ product.image }}"></div>
-				</a>
-			  
-			  <div class="card_content">
-				<h2 class="card_title">{{ product.title }}</h2>
-				<hr>
-				<h2 class="card_title">{{ product.price }} ₽</h2>
-				<br>
-				<form action="/add_favorites/{{ product.title }}/">
-					<button class="btn card_btn" type="submit">В избраннное</button>
-				</form>
-				<form action="/buy/{{ product.title }}/">
-					<button class="btn card_btn" type="submit">Заказать</button>
-				</form>
-			  </div>
-			</div>
-		  </li>
-		{% endfor %}
+				{% for product in array_products: %}
+				<li class="cards_item">
+					<div class="card">
 
-		</ul>
-	  </div>
+						<a href="{{ product.image }}" target="_blank">
+							<div class="card_image"><img src="{{ product.image }}"></div>
+						</a>
 
-</div>
+						<div class="card_content">
+							<h2 class="card_title">{{ product.title }}</h2>
+							<hr>
+							<h2 class="card_title">{{ product.price }} ₽</h2>
+							<br>
+							<form action="/add_favorites/{{ product.title }}/">
+								<button class="btn card_btn" type="submit">В избраннное</button>
+							</form>
+							<form action="/buy/{{ product.title }}/">
+								<button class="btn card_btn" type="submit">Заказать</button>
+							</form>
+						</div>
+					</div>
+				</li>
+				{% endfor %}
+
+			</ul>
+		</div>
+
+	</div>
 
 </body>
 

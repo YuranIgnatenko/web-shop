@@ -116,7 +116,7 @@ class Parser():
 		temp_array_products = []
 		for div in soup.find_all("div", class_="product-card-item"):
 			title = div.find("a", class_="product-card-item__link link").text
-			price = div.find("div", class_="product-card-item__prices").find("p").text.replace("₽","").strip()
+			price = str(div.find("div", class_="product-card-item__prices").find("p").text.replace("₽","").strip().replace(u"\xa0",u"")).encode('utf-8')
 			image = URL_PREFIX_IMAGE + div.find("a",class_="product-card-item__image").find("img").get("src")
 			description = div.find("p", class_="product-card-item__description").text
 			temp_array_products.append(models.Product(title, image, price, description))

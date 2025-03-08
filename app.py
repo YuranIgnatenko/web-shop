@@ -21,13 +21,27 @@ class WebApp():
 		self.settings = Settings(self.conf)
 		
 
+	def edit_price_for_products(self, products:list[models.Product]) -> list[models.Product]:
+		for product in products:
+			print(product.price)
+			product.price = float(product.price)+float(self.settings.num_plus_price) + 100/float(self.settings.percent_plus_price)
+			product.price = str(round(product.price, 2))
+			print(product.price)
+		return products
+			
+
+
 	def render_products(self, key:str, category:str) -> str:
 		for temp_tab in parser.URL_DIRS:
 			for key, value in temp_tab.items():
 				if value[1] == category:
 					return render_template(
 							'products.html',
-							array_products = self.service_parser.get_products(temp_tab[key][0]),
+							array_products = self.edit_price_for_products(
+								self.service_parser.get_products(
+									temp_tab[key][0]
+									)
+								),
 							tab_1 = parser.URL_PC,
 							tab_2 = parser.URL_GAJET,
 							tab_3 = parser.URL_PHOTO_AUDIO,
@@ -48,6 +62,19 @@ class WebApp():
 
 		@self.app.route('/settings')
 		def route_settings():
+			return render_template('settings.html', settings=self.settings)
+
+		@self.app.route('/settings_apply', methods=['POST'])
+		def route_settings_apply():
+			form_settings = request.form
+			self.settings.percent_plus_price = form_settings["percent_plus_price"]
+			self.settings.num_plus_price = form_settings["num_plus_price"]
+			self.settings.period_parsing = form_settings["period_parsing"]
+			self.settings.count_cards_in_page = form_settings["count_cards_in_page"]
+			temp_dict = {}
+			for field in form_settings:
+				temp_dict[field] = form_settings[field]
+			self.conf.rewrite_from_dict(temp_dict)
 			return render_template('settings.html', settings=self.settings)
 
 		@self.app.route('/support')
