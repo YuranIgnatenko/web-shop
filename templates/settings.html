@@ -33,7 +33,7 @@
 				<div class="col-md-3 border-right">
 					<div class="p-3 py-5">
 						<div class="d-flex justify-content-between align-items-center mb-3">
-							<h4 class="text-right">Профиль</h4>
+							<h4 class="text-right">Фото профиля</h4>
 						</div>
 						<div class="profile-pic-wrapper">
 							<div class="pic-holder">
@@ -54,21 +54,22 @@
 									</div>
 								</label>
 							</div>
-
-							</hr>
 							<p class="text-info text-center small">Для изменения изображения наведите курсор</p>
 						</div>
+
+						<hr>
+
+						<div class="d-flex justify-content-between align-items-center mb-3">
+							<h4 class="text-right">Авторизация</h4>
+						</div>
+
 						<div class="row mt-3">
-							<div class="col-md-12"><label class="labels">СТАТУС</label><input type="text"
-									class="form-control" placeholder="first name" name="percent_plus_price"
-									value="{{ settings.percent_plus_price }}">
-							</div>
 							<div class="col-md-12"><label class="labels">ЛОГИН</label><input type="text"
-									class="form-control" placeholder="first name" name="percent_plus_price"
+									class="form-control" placeholder="first name" name="settings_auth_login"
 									value="{{ settings.percent_plus_price }}">
 							</div>
 							<div class="col-md-12"><label class="labels">ПАРОЛЬ</label><input type="password"
-									class="form-control" placeholder="first name" name="percent_plus_price"
+									class="form-control" placeholder="first name" name="settings_auth_password"
 									value="{{ settings.percent_plus_price }}">
 							</div>
 						</div>
@@ -106,18 +107,20 @@
 							<h4 class="text-right">Категории товаров</h4>
 						</div>
 						<div class="checkbox-wrapper-10">
-							<input class="tgl tgl-flip" id="a1" type="checkbox" checked />
+							<input class="tgl tgl-flip" id="a1" type="checkbox" name="settings_check_gadgets" checked />
 							<label class="tgl-btn" data-tg-off="ГАДЖЕТЫ" data-tg-on="ГАДЖЕТЫ" for="a1"></label>
-							<input class="tgl tgl-flip" id="a2" type="checkbox" checked />
+							<input class="tgl tgl-flip" id="a2" type="checkbox" name="settings_check_electonika"
+								checked />
 							<label class="tgl-btn" data-tg-off="ЭЛЕКТРОНИКА" data-tg-on="ЭЛЕКТРОНИКА" for="a2"></label>
-							<input class="tgl tgl-flip" id="a3" type="checkbox" checked />
+							<input class="tgl tgl-flip" id="a3" type="checkbox" name="settings_check_tools" checked />
 							<label class="tgl-btn" data-tg-off="ИНСТРУМЕНТЫ" data-tg-on="ИНСТРУМЕНТЫ" for="a3"></label>
-							<input class="tgl tgl-flip" id="a4" type="checkbox" checked />
+							<input class="tgl tgl-flip" id="a4" type="checkbox" name="settings_check_photoaudiotehnika"
+								checked />
 							<label class="tgl-btn" data-tg-off="ФОТОАУДИОТЕХНИКА" data-tg-on="ФОТОАУДИОТЕХНИКА"
 								for="a4"></label>
-							<input class="tgl tgl-flip" id="a5" type="checkbox" checked />
+							<input class="tgl tgl-flip" id="a5" type="checkbox" name="settings_check_other" checked />
 							<label class="tgl-btn" data-tg-off="ПРОЧЕЕ" data-tg-on="ПРОЧЕЕ" for="a5"></label>
-							<input class="tgl tgl-flip" id="a6" type="checkbox" checked />
+							<input class="tgl tgl-flip" id="a6" type="checkbox" name="settings_check_sales" checked />
 							<label class="tgl-btn" data-tg-off="АКЦИИ" data-tg-on="АКЦИИ" for="a6"></label>
 						</div>
 
@@ -126,15 +129,16 @@
 							<h4 class="text-right">Страницы сайта</h4>
 						</div>
 						<div class="checkbox-wrapper-10">
-							<input class="tgl tgl-flip" id="b1" type="checkbox" checked />
+							<input class="tgl tgl-flip" id="b1" type="checkbox" name="settings_check_profile" checked />
 							<label class="tgl-btn" data-tg-off="профиль" data-tg-on="профиль" for="b1"></label>
-							<input class="tgl tgl-flip" id="b2" type="checkbox" checked />
+							<input class="tgl tgl-flip" id="b2" type="checkbox" name="settings_check_trash" checked />
 							<label class="tgl-btn" data-tg-off="корзина" data-tg-on="корзина" for="b2"></label>
-							<input class="tgl tgl-flip" id="b3" type="checkbox" checked />
+							<input class="tgl tgl-flip" id="b3" type="checkbox" name="settings_check_orders" checked />
 							<label class="tgl-btn" data-tg-off="заказы" data-tg-on="заказы" for="b3"></label>
-							<input class="tgl tgl-flip" id="b4" type="checkbox" checked />
+							<input class="tgl tgl-flip" id="b4" type="checkbox" name="settings_check_support" checked />
 							<label class="tgl-btn" data-tg-off="поддержка" data-tg-on="поддержка" for="b4"></label>
-							<input class="tgl tgl-flip" id="b5" type="checkbox" checked />
+							<input class="tgl tgl-flip" id="b5" type="checkbox" name="settings_check_settings"
+								checked />
 							<label class="tgl-btn" data-tg-off="настройки" data-tg-on="настройки" for="b5"></label>
 						</div>
 
@@ -148,41 +152,48 @@
 
 						<div class="row mt-3">
 							<div class="col-md-12"><label class="labels">ИМЯ</label><input type="text"
-									class="form-control" placeholder="enter email name" name="period_parsing"
-									value="{{ settings.period_parsing }}">
+									class="form-control" placeholder="enter email name" name="settings_name_user"
+									value="{{ settings.dict_settings_values['settings_name_user'] }}">
 							</div>
 						</div>
 
 						<div class="row mt-3">
 							<div class="col-md-12"><label class="labels">ФАМИЛИЯ</label><input type="text"
-									class="form-control" placeholder="enter email name" name="period_parsing"
-									value="{{ settings.period_parsing }}">
+									class="form-control" placeholder="settings_family_user" name="settings_family_user"
+									value="{{ settings.dict_settings_values['settings_family_user'] }}">
 							</div>
 						</div>
 
 						<div class="row mt-3">
 							<div class="col-md-12"><label class="labels">ГОД РОЖДЕНИЯ</label><input type="text"
-									class="form-control" placeholder="enter email name" name="period_parsing"
-									value="{{ settings.period_parsing }}">
+									class="form-control" placeholder="settings_birthday_user"
+									name="settings_birthday_user"
+									value="{{ settings.dict_settings_values['settings_birthday_user'] }}">
 							</div>
 						</div>
 
 						<div class="row mt-3">
 							<div class="col-md-12"><label class="labels">НОМЕР ТЕЛЕФОНА</label><input type="text"
-									class="form-control" placeholder="enter email name" name="period_parsing"
-									value="{{ settings.period_parsing }}"></div>
+									class="form-control" placeholder="settings_phone_user" name="settings_phone_user"
+									value="{{ settings.dict_settings_values['settings_phone_user'] }}"></div>
 						</div>
 
 						<div class="row mt-3">
 							<div class="col-md-12"><label class="labels">ЭЛЕКТРОННАЯ ПОЧТА</label><input type="text"
-									class="form-control" placeholder="enter email name" name="period_parsing"
-									value="{{ settings.period_parsing }}"></div>
+									class="form-control" placeholder="settings_enail_user" name="settings_enail_user"
+									value="{{ settings.dict_settings_values['settings_enail_user'] }}"></div>
 						</div>
 
 						<div class="row mt-3">
 							<div class="col-md-12"><label class="labels">ТЕЛЕГРАММ ССЫЛКА</label><input type="text"
-									class="form-control" placeholder="enter email name" name="period_parsing"
-									value="{{ settings.period_parsing }}"></div>
+									class="form-control" placeholder="settings_telegram_user"
+									name="settings_telegram_user"
+									value="{{ settings.dict_settings_values['settings_telegram_user'] }}"></div>
+						</div>
+
+						<div class="col-md-3"><label class="labels">СТАТУС</label><input type="text"
+								class="form-control" placeholder="settings_status_user" name="settings_status_user"
+								value="{{ settings.dict_settings_values['settings_status_user'] }}">
 						</div>
 
 					</div>
@@ -191,7 +202,6 @@
 			<hr>
 			<input class="btn btn-primary profile-button" type="submit" value="ПРИМЕНИТЬ ПАРАМЕТРЫ" />
 		</form>
-		<!-- <div ><button class= type="button"></button></div> -->
 
 	</div>
 	</div>

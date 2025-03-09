@@ -4,10 +4,10 @@ from config import Config
 
 class Settings():
 	def __init__(self, conf:Config):
-		self.percent_plus_price = conf.get("percent_plus_price")
-		self.num_plus_price = conf.get("num_plus_price")
-		self.period_parsing = conf.get("period_parsing")
-		self.count_cards_in_page = conf.get("count_cards_in_page")
+		self.conf = conf
+		self.dict_settings_values = {}
+	def resave_values(self) -> None:
+		self.conf.rewrite_from_dict(self.dict_settings_values)
 
 
 class WebApp():
@@ -65,14 +65,12 @@ class WebApp():
 		@self.app.route('/settings_apply', methods=['POST'])
 		def route_settings_apply():
 			form_settings = request.form
-			self.settings.percent_plus_price = form_settings["percent_plus_price"]
-			self.settings.num_plus_price = form_settings["num_plus_price"]
-			self.settings.period_parsing = form_settings["period_parsing"]
-			self.settings.count_cards_in_page = form_settings["count_cards_in_page"]
-			temp_dict = {}
+			# self.settings.dict_settings_values = {}
 			for field in form_settings:
-				temp_dict[field] = form_settings[field]
-			self.conf.rewrite_from_dict(temp_dict)
+				self.settings.dict_settings_values[field] = form_settings[field]
+				print(field, form_settings[field])
+			self.conf.rewrite_from_dict(self.settings.dict_settings_values)
+			# self.settings.resave_values()
 			return render_template('settings.html', settings=self.settings)
 
 		@self.app.route('/support')
@@ -83,9 +81,9 @@ class WebApp():
 		def route_orders():
 			return render_template('orders.html')
 
-
-	def start_app(self):
+	def start_app(self) -> None:
 		self.app.run(debug=False)
+
 
 def main() -> None:
 	webapp = WebApp()
