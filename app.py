@@ -23,10 +23,8 @@ class WebApp():
 
 	def edit_price_for_products(self, products:list[models.Product]) -> list[models.Product]:
 		for product in products:
-			print(product.price)
 			product.price = float(product.price)+float(self.settings.num_plus_price) + 100/float(self.settings.percent_plus_price)
 			product.price = str(round(product.price, 2))
-			print(product.price)
 		return products
 			
 

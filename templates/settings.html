@@ -5,11 +5,16 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Settings</title>
-
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/settings.css') }}">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="{{ url_for('static',filename='scripts/settings.js') }}"></script>
+
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -18,7 +23,7 @@
 	<div class="container rounded bg-white mt-5 mb-5">
 
 		<div class="settings-head-container">
-			<h1>Настройки (сайт, парсер, html)</h1>
+			<h1>Настройки</h1>
 		</div>
 		<hr>
 
@@ -26,16 +31,54 @@
 
 			<div class="row">
 				<div class="col-md-3 border-right">
-					<div class="d-flex flex-column align-items-center text-center p-3 py-5"><img
-							class="rounded-circle mt-5" width="150px"
-							src="https://cdn-icons-png.flaticon.com/128/4151/4151678.png"><span
-							class="font-weight-bold">Edogaru</span><span
-							class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
+					<div class="p-3 py-5">
+						<div class="d-flex justify-content-between align-items-center mb-3">
+							<h4 class="text-right">Профиль</h4>
+						</div>
+						<div class="profile-pic-wrapper">
+							<div class="pic-holder">
+								<!-- uploaded pic shown here -->
+								<img id="profilePic" class="pic"
+									src="https://png.pngtree.com/thumb_back/fh260/background/20230612/pngtree-in-the-style-of-2d-game-art-image_2884743.jpg">
+
+								<Input class="uploadProfileInput" type="file" name="profile_pic" id="newProfilePhoto"
+									accept="image/*" style="opacity: 0;" />
+								<label for="newProfilePhoto" class="upload-file-block">
+									<div class="text-center">
+										<div class="mb-2">
+											<i class="fa fa-camera fa-2x"></i>
+										</div>
+										<div class="text-uppercase">
+											Загрузить
+										</div>
+									</div>
+								</label>
+							</div>
+
+							</hr>
+							<p class="text-info text-center small">Для изменения изображения наведите курсор</p>
+						</div>
+						<div class="row mt-3">
+							<div class="col-md-12"><label class="labels">СТАТУС</label><input type="text"
+									class="form-control" placeholder="first name" name="percent_plus_price"
+									value="{{ settings.percent_plus_price }}">
+							</div>
+							<div class="col-md-12"><label class="labels">ЛОГИН</label><input type="text"
+									class="form-control" placeholder="first name" name="percent_plus_price"
+									value="{{ settings.percent_plus_price }}">
+							</div>
+							<div class="col-md-12"><label class="labels">ПАРОЛЬ</label><input type="password"
+									class="form-control" placeholder="first name" name="percent_plus_price"
+									value="{{ settings.percent_plus_price }}">
+							</div>
+						</div>
+					</div>
+
 				</div>
 				<div class="col-md-5 border-right">
 					<div class="p-3 py-5">
 						<div class="d-flex justify-content-between align-items-center mb-3">
-							<h4 class="text-right">Редактор Сайт / Парсер)</h4>
+							<h4 class="text-right">Параметры сайта</h4>
 						</div>
 						<div class="row mt-2">
 							<div class="col-md-6"><label class="labels">НАДБАВКА (%)</label><input type="text"
@@ -57,17 +100,93 @@
 									value="{{ settings.count_cards_in_page }}"></div>
 							<!-- <div class="col-md-6"><label class="labels"></label><input type="text" class="form-control" value="" placeholder="test"></div> -->
 						</div>
+
+						<hr>
+						<div class="d-flex justify-content-between align-items-center mb-3">
+							<h4 class="text-right">Категории товаров</h4>
+						</div>
+						<div class="checkbox-wrapper-10">
+							<input class="tgl tgl-flip" id="a1" type="checkbox" checked />
+							<label class="tgl-btn" data-tg-off="ГАДЖЕТЫ" data-tg-on="ГАДЖЕТЫ" for="a1"></label>
+							<input class="tgl tgl-flip" id="a2" type="checkbox" checked />
+							<label class="tgl-btn" data-tg-off="ЭЛЕКТРОНИКА" data-tg-on="ЭЛЕКТРОНИКА" for="a2"></label>
+							<input class="tgl tgl-flip" id="a3" type="checkbox" checked />
+							<label class="tgl-btn" data-tg-off="ИНСТРУМЕНТЫ" data-tg-on="ИНСТРУМЕНТЫ" for="a3"></label>
+							<input class="tgl tgl-flip" id="a4" type="checkbox" checked />
+							<label class="tgl-btn" data-tg-off="ФОТОАУДИОТЕХНИКА" data-tg-on="ФОТОАУДИОТЕХНИКА"
+								for="a4"></label>
+							<input class="tgl tgl-flip" id="a5" type="checkbox" checked />
+							<label class="tgl-btn" data-tg-off="ПРОЧЕЕ" data-tg-on="ПРОЧЕЕ" for="a5"></label>
+							<input class="tgl tgl-flip" id="a6" type="checkbox" checked />
+							<label class="tgl-btn" data-tg-off="АКЦИИ" data-tg-on="АКЦИИ" for="a6"></label>
+						</div>
+
+						<hr>
+						<div class="d-flex justify-content-between align-items-center mb-3">
+							<h4 class="text-right">Страницы сайта</h4>
+						</div>
+						<div class="checkbox-wrapper-10">
+							<input class="tgl tgl-flip" id="b1" type="checkbox" checked />
+							<label class="tgl-btn" data-tg-off="профиль" data-tg-on="профиль" for="b1"></label>
+							<input class="tgl tgl-flip" id="b2" type="checkbox" checked />
+							<label class="tgl-btn" data-tg-off="корзина" data-tg-on="корзина" for="b2"></label>
+							<input class="tgl tgl-flip" id="b3" type="checkbox" checked />
+							<label class="tgl-btn" data-tg-off="заказы" data-tg-on="заказы" for="b3"></label>
+							<input class="tgl tgl-flip" id="b4" type="checkbox" checked />
+							<label class="tgl-btn" data-tg-off="поддержка" data-tg-on="поддержка" for="b4"></label>
+							<input class="tgl tgl-flip" id="b5" type="checkbox" checked />
+							<label class="tgl-btn" data-tg-off="настройки" data-tg-on="настройки" for="b5"></label>
+						</div>
+
 					</div>
 				</div>
-				<!-- <div class="col-md-4">
-				<div class="p-3 py-5">
-					<div class="d-flex justify-content-between align-items-center mb-3">
-						<h4 class="text-right">Редактор HTML / CSS</h4>
-					</div>	
-					<div class="col-md-12"><label class="labels">Карточка товара (HTML)</label><textarea  cols="100" rows="3" class="form-control" placeholder="experience" value="{{ settings.temp_card_html }}"></textarea></div> <br>
-					<div class="col-md-12"><label class="labels">Карточка товара (CSS)</label><textarea  cols="100" rows="3" class="form-control" placeholder="additional details" value="{{ settings.temp_card_css }}"></textarea></div>
+				<div class="col-md-4">
+					<div class="p-3 py-5">
+						<div class="d-flex justify-content-between align-items-center mb-3">
+							<h4 class="text-right">Данные о пользователе</h4>
+						</div>
+
+						<div class="row mt-3">
+							<div class="col-md-12"><label class="labels">ИМЯ</label><input type="text"
+									class="form-control" placeholder="enter email name" name="period_parsing"
+									value="{{ settings.period_parsing }}">
+							</div>
+						</div>
+
+						<div class="row mt-3">
+							<div class="col-md-12"><label class="labels">ФАМИЛИЯ</label><input type="text"
+									class="form-control" placeholder="enter email name" name="period_parsing"
+									value="{{ settings.period_parsing }}">
+							</div>
+						</div>
+
+						<div class="row mt-3">
+							<div class="col-md-12"><label class="labels">ГОД РОЖДЕНИЯ</label><input type="text"
+									class="form-control" placeholder="enter email name" name="period_parsing"
+									value="{{ settings.period_parsing }}">
+							</div>
+						</div>
+
+						<div class="row mt-3">
+							<div class="col-md-12"><label class="labels">НОМЕР ТЕЛЕФОНА</label><input type="text"
+									class="form-control" placeholder="enter email name" name="period_parsing"
+									value="{{ settings.period_parsing }}"></div>
+						</div>
+
+						<div class="row mt-3">
+							<div class="col-md-12"><label class="labels">ЭЛЕКТРОННАЯ ПОЧТА</label><input type="text"
+									class="form-control" placeholder="enter email name" name="period_parsing"
+									value="{{ settings.period_parsing }}"></div>
+						</div>
+
+						<div class="row mt-3">
+							<div class="col-md-12"><label class="labels">ТЕЛЕГРАММ ССЫЛКА</label><input type="text"
+									class="form-control" placeholder="enter email name" name="period_parsing"
+									value="{{ settings.period_parsing }}"></div>
+						</div>
+
+					</div>
 				</div>
-			</div> -->
 			</div>
 			<hr>
 			<input class="btn btn-primary profile-button" type="submit" value="ПРИМЕНИТЬ ПАРАМЕТРЫ" />
