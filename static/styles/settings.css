@@ -296,3 +296,9 @@ body {
   .checkbox-wrapper-10 .tgl-flip:checked + .tgl-btn:active:after {
     transform: rotateX(20deg);
   }
+
+
+.div-horizontal {
+  display:inline-block;
+  padding: 1px;
+}

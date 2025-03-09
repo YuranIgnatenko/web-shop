@@ -38,23 +38,27 @@
 						<div class="profile-pic-wrapper">
 							<div class="pic-holder">
 								<!-- uploaded pic shown here -->
-								<img id="profilePic" class="pic"
-									src="https://png.pngtree.com/thumb_back/fh260/background/20230612/pngtree-in-the-style-of-2d-game-art-image_2884743.jpg">
+								<!-- default = "https://png.pngtree.com/thumb_back/fh260/background/20230612/pngtree-in-the-style-of-2d-game-art-image_2884743.jpg" -->
 
-								<Input class="uploadProfileInput" type="file" name="profile_pic" id="newProfilePhoto"
-									accept="image/*" style="opacity: 0;" />
+								<img id="profilePic" class="pic"
+									src="{{ settings.dict_settings_values['settings_profile_pic'] }}">
+
+								<Input class="uploadProfileInput" type="file" id="newProfilePhoto" style="opacity: 0;"
+									value="{{ settings.dict_settings_values['settings_profile_pic'] }}" />
+								<!-- accept="image/*"  -->
 								<label for="newProfilePhoto" class="upload-file-block">
 									<div class="text-center">
 										<div class="mb-2">
 											<i class="fa fa-camera fa-2x"></i>
 										</div>
-										<div class="text-uppercase">
-											Загрузить
-										</div>
 									</div>
 								</label>
 							</div>
-							<p class="text-info text-center small">Для изменения изображения наведите курсор</p>
+							<p class="text-info text-center small">Для изменения изображения укажите ссылку</p>
+							<div class="col-md-12"><input type="text" class="form-control" placeholder="path image"
+									name="settings_profile_pic"
+									value="{{ settings.dict_settings_values['settings_profile_pic'] }}">
+							</div>
 						</div>
 
 						<hr>
@@ -66,11 +70,11 @@
 						<div class="row mt-3">
 							<div class="col-md-12"><label class="labels">ЛОГИН</label><input type="text"
 									class="form-control" placeholder="first name" name="settings_auth_login"
-									value="{{ settings.percent_plus_price }}">
+									value="{{ settings.dict_settings_values['settings_auth_login'] }}">
 							</div>
 							<div class="col-md-12"><label class="labels">ПАРОЛЬ</label><input type="password"
 									class="form-control" placeholder="first name" name="settings_auth_password"
-									value="{{ settings.percent_plus_price }}">
+									value="{{ settings.dict_settings_values['settings_auth_password'] }}">
 							</div>
 						</div>
 					</div>
@@ -84,44 +88,40 @@
 						<div class="row mt-2">
 							<div class="col-md-6"><label class="labels">НАДБАВКА (%)</label><input type="text"
 									class="form-control" placeholder="first name" name="percent_plus_price"
-									value="{{ settings.percent_plus_price }}"></div>
+									value="{{ settings.dict_settings_values['percent_plus_price'] }}"></div>
 
 							<div class="col-md-6"><label class="labels">НАДБАВКА (+)</label><input type="text"
-									class="form-control" value="{{ settings.num_plus_price }}" placeholder="surname"
-									name="num_plus_price"> </div>
+									class="form-control" value="{{ settings.dict_settings_values['num_plus_price'] }}"
+									placeholder="surname" name="num_plus_price"> </div>
 						</div>
 						<div class="row mt-3">
 							<div class="col-md-12"><label class="labels">ПЕРИОД ПАРСИГА</label><input type="text"
 									class="form-control" placeholder="enter email name" name="period_parsing"
-									value="{{ settings.period_parsing }}"></div>
+									value="{{ settings.dict_settings_values['period_parsing'] }}"></div>
 						</div>
 						<div class="row mt-3">
-							<div class="col-md-6"><label class="labels">КОЛ-ВО КАРТОЧЕК НА СТРАНИЦУ</label><input
+							<div class="col-md-12"><label class="labels">КОЛ-ВО КАРТОЧЕК НА СТРАНИЦУ</label><input
 									type="text" class="form-control" placeholder="country" name="count_cards_in_page"
-									value="{{ settings.count_cards_in_page }}"></div>
+									value="{{ settings.dict_settings_values['count_cards_in_page'] }}"></div>
 							<!-- <div class="col-md-6"><label class="labels"></label><input type="text" class="form-control" value="" placeholder="test"></div> -->
 						</div>
 
-						<hr>
+						<!-- <hr>
 						<div class="d-flex justify-content-between align-items-center mb-3">
 							<h4 class="text-right">Категории товаров</h4>
 						</div>
 						<div class="checkbox-wrapper-10">
+							<p>ПРОДУКТЫ</p>
 							<input class="tgl tgl-flip" id="a1" type="checkbox" name="settings_check_gadgets" checked />
-							<label class="tgl-btn" data-tg-off="ГАДЖЕТЫ" data-tg-on="ГАДЖЕТЫ" for="a1"></label>
-							<input class="tgl tgl-flip" id="a2" type="checkbox" name="settings_check_electonika"
-								checked />
-							<label class="tgl-btn" data-tg-off="ЭЛЕКТРОНИКА" data-tg-on="ЭЛЕКТРОНИКА" for="a2"></label>
-							<input class="tgl tgl-flip" id="a3" type="checkbox" name="settings_check_tools" checked />
-							<label class="tgl-btn" data-tg-off="ИНСТРУМЕНТЫ" data-tg-on="ИНСТРУМЕНТЫ" for="a3"></label>
-							<input class="tgl tgl-flip" id="a4" type="checkbox" name="settings_check_photoaudiotehnika"
-								checked />
-							<label class="tgl-btn" data-tg-off="ФОТОАУДИОТЕХНИКА" data-tg-on="ФОТОАУДИОТЕХНИКА"
-								for="a4"></label>
+							<label class="tgl-btn" data-tg-off="off" data-tg-on="on" for="a1"></label>
+							
+							<p>ПРОЧЕЕ</p>
 							<input class="tgl tgl-flip" id="a5" type="checkbox" name="settings_check_other" checked />
-							<label class="tgl-btn" data-tg-off="ПРОЧЕЕ" data-tg-on="ПРОЧЕЕ" for="a5"></label>
+							<label class="tgl-btn" data-tg-off="off" data-tg-on="on" for="a5"></label>
+
+							<p>АКЦИИ</p>
 							<input class="tgl tgl-flip" id="a6" type="checkbox" name="settings_check_sales" checked />
-							<label class="tgl-btn" data-tg-off="АКЦИИ" data-tg-on="АКЦИИ" for="a6"></label>
+							<label class="tgl-btn" data-tg-off="off" data-tg-on="on" for="a6"></label>
 						</div>
 
 						<hr>
@@ -129,18 +129,27 @@
 							<h4 class="text-right">Страницы сайта</h4>
 						</div>
 						<div class="checkbox-wrapper-10">
+							<p>профиль</p>
 							<input class="tgl tgl-flip" id="b1" type="checkbox" name="settings_check_profile" checked />
-							<label class="tgl-btn" data-tg-off="профиль" data-tg-on="профиль" for="b1"></label>
+							<label class="tgl-btn" data-tg-off="off" data-tg-on="on" for="b1"></label>
+
+							<p>корзина</p>
 							<input class="tgl tgl-flip" id="b2" type="checkbox" name="settings_check_trash" checked />
-							<label class="tgl-btn" data-tg-off="корзина" data-tg-on="корзина" for="b2"></label>
+							<label class="tgl-btn" data-tg-off="off" data-tg-on="on" for="b2"></label>
+
+							<p>заказы</p>
 							<input class="tgl tgl-flip" id="b3" type="checkbox" name="settings_check_orders" checked />
-							<label class="tgl-btn" data-tg-off="заказы" data-tg-on="заказы" for="b3"></label>
+							<label class="tgl-btn" data-tg-off="off" data-tg-on="on" for="b3"></label>
+
+							<p>поддержка</p>
 							<input class="tgl tgl-flip" id="b4" type="checkbox" name="settings_check_support" checked />
-							<label class="tgl-btn" data-tg-off="поддержка" data-tg-on="поддержка" for="b4"></label>
+							<label class="tgl-btn" data-tg-off="off" data-tg-on="on" for="b4"></label>
+
+							<p>настройки</p>
 							<input class="tgl tgl-flip" id="b5" type="checkbox" name="settings_check_settings"
 								checked />
-							<label class="tgl-btn" data-tg-off="настройки" data-tg-on="настройки" for="b5"></label>
-						</div>
+							<label class="tgl-btn" data-tg-off="off" data-tg-on="on" for="b5"></label>
+						</div> -->
 
 					</div>
 				</div>
@@ -200,7 +209,30 @@
 				</div>
 			</div>
 			<hr>
+
 			<input class="btn btn-primary profile-button" type="submit" value="ПРИМЕНИТЬ ПАРАМЕТРЫ" />
+			<br>
+			<div class="div-horizontal">
+
+				<div class="div-horizontal">
+					<form action="/">
+						<input class="btn btn-primary btn-horizontal" type="submit" value="ГЛАВНАЯ" />
+					</form>
+					<form action="/profile">
+						<input class="btn btn-primary btn-horizontal" type="submit" value="ПРОФИЛЬ" />
+					</form>
+				</div>
+
+				<div class="div-horizontal">
+					<form action="/orders">
+						<input class="btn btn-primary btn-horizontal" type="submit" value="ЗАКАЗЫ" />
+					</form>
+					<form action="/exit">
+						<input class="btn btn-primary btn-horizontal" type="submit" value="ВЫХОД" />
+					</form>
+				</div>
+			</div>
+
 		</form>
 
 	</div>

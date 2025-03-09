@@ -20,6 +20,7 @@
 
 	<nav class="nav_up" role="navigation">
 		<ul>
+			{% if settings.dict_settings_values['settings_check_gadgets'] == "on" %}
 			<li><a href="#">ГАДЖЕТЫ</a>
 				<ul>
 					{% for key, value in tab_1.items(): %}
@@ -27,6 +28,7 @@
 					{% endfor %}
 				</ul>
 			</li>
+			{% endif %}
 
 			<li><a href="#">ЭЛЕКТРОНИКА</a>
 				<ul>
