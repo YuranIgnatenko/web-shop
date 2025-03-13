@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, make_response
 from services import parser, models
 from config import Config
 
@@ -119,6 +119,9 @@ class WebApp():
 				self.active_number_page += 1
 			return render_template('orders.html')
 
+		@self.app.route('/login')
+		def route_login():
+			return render_template('login.html')
 			
 
 	def start_app(self) -> None:
