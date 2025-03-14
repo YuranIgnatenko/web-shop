@@ -1,7 +1,41 @@
-from flask import Flask, request, render_template, make_response
+from flask import Flask, request, render_template, make_response, redirect
 from services import parser, models
 from config import Config
 
+import redis, random
+
+class ManagerDataBase():
+	def __init__(self):
+		self.cursor = redis.Redis("127.0.0.1", 6379, 0)
+
+	def set(self, key:str, value:any) -> None:
+		self.cursor.set(key, value)
+
+class ManagerCookies():
+	def __init__(self, cursor:redis.Redis):
+		self.cursor = cursor
+
+	def is_match_cookies(self) -> bool:
+		if len(request.cookies.keys()) == 0:
+			return False
+		return True
+	
+	def set_cookies_auth(self):
+		token = str(self.init_token())
+		response = make_response(render_template('settings.html'))
+		response.mimetype = 'text/plain'
+		print(response)
+		# response.set_cookie("token", token)
+		self.cursor.set(token, "test")
+		
+
+		return response
+
+
+	def init_token(self) -> int:
+		token = random.randint(100_000, 999_999)
+		return token
+	
 class Settings():
 	def __init__(self, conf:Config):
 		self.conf = conf
@@ -13,6 +47,8 @@ class Settings():
 class WebApp():
 	def __init__(self) -> None:
 		self.conf = Config("config.json")
+		self.mng_database = ManagerDataBase()
+		self.mng_cookies = ManagerCookies(self.mng_database)
 		self.app = Flask(__name__)
 		self.service_parser = parser.Parser()
 		self.active_number_page = 1
@@ -28,7 +64,6 @@ class WebApp():
 
 	def edit_price_for_products(self, products:list[models.Product]) -> list[models.Product]:
 		for product in products:
-			print(self.settings.dict_settings_values)
 
 			product.price = float(product.price)
 			product.price += (float(product.price) / 100) * float(self.settings.dict_settings_values['percent_plus_price'])
@@ -94,7 +129,6 @@ class WebApp():
 			# self.settings.dict_settings_values = {}
 			for field in form_settings:
 				self.settings.dict_settings_values[field] = form_settings[field]
-				print(field, form_settings[field])
 			self.conf.rewrite_from_dict(self.settings.dict_settings_values)
 			# self.settings.resave_values()
 			return render_template('settings.html', settings=self.settings)
@@ -122,7 +156,11 @@ class WebApp():
 		@self.app.route('/login')
 		def route_login():
 			return render_template('login.html')
-			
+	
+		@self.app.route('/auth', methods=['POST'])
+		def route_cookies():
+			if self.mng_cookies.is_match_cookies() == False:
+				return self.mng_cookies.set_cookies_auth()
 
 	def start_app(self) -> None:
 		self.app.run(debug=False)
