@@ -1,362 +1,201 @@
 <!DOCTYPE html>
-<html lang="ru-ru">
+<html lang="en">
 
 <head>
-
-
-	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-	<meta name="keywords" content="" />
-	<meta name="description" content="" />
-	<!-- <meta content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1" name="viewport"> -->
-	<meta name="viewport" content="width=1200px">
-	<title>Регистрация</title>
-
-
-	<style>
-		:root {
-
-			--mainSchemeColor: #804C3E;
-
-			/* color element */
-			--mainContrastSchemeColor: #3584a4;
-			/* hover to element */
-			--mainContrastSchemeColor-darken10: #052f3f;
-
-			--catalogTitleColor: #333;
-
-			--mainSchemeColorHover: #1a791f;
-			--mainContrastSchemeColorHover: #f5946b;
-
-			--menuBorderDarken: #7b4739;
-
-			--mainSchemeColor-darken10: #764234;
-			--mainSchemeColor-darken20: #6c382a;
-			--mainSchemeColor-darken30: #622e20;
-			--mainSchemeColor-lighten10: #8a5648;
-			--mainSchemeColor-lighten20: #946052;
-
-
-
-			--mainContrastSchemeColor-darken20: #eb8a61;
-			--mainContrastSchemeColor-darken30: #e18057;
-			--mainContrastSchemeColor-lighten10: #ffa87f;
-			--mainContrastSchemeColor-lighten20: #ffb289;
-		}
-
-		div>a>span {
-			background-color: var(--mainContrastSchemeColor);
-			color: white;
-			padding: 4px;
-			border-radius: 5px;
-		}
-
-		div>a>span:hover {
-			background-color: var(--mainContrastSchemeColor-darken10);
-		}
-
-		.link_btn {
-			background-color: var(--mainContrastSchemeColor);
-			padding: 4px;
-			border-radius: 5px;
-		}
-
-		.link_btn:hover {
-			background-color: var(--mainContrastSchemeColor-darken10);
-		}
-
-		.input_form_field {
-			background-color: #946052;
-			color: #104d64;
-		}
-
-		.input_form_field:hover {
-			background-color: #946052;
-			color: #000000;
-		}
-	</style>
-
-	<link href="http://new15942715563356.myaddshop.ru/css/shop/themes/base/style.css?ver=1691644398" rel="stylesheet"
-		type="text/css">
-	<link href="http://new15942715563356.myaddshop.ru/css/shop/themes/templates/michigan.css?ver=1691644398"
-		rel="stylesheet" type="text/css">
-	<link href="http://new15942715563356.myaddshop.ru/css/shop/mobile.css?ver=1691644398" rel="stylesheet"
-		type="text/css" media="(max-width: 1366px)">
-
-	<script>
-		window.shop_currency = 'руб.';
-		window.shop_id = '1010';
-		window.customer_discount = '';
-		window.template_class = 'michigan';
-		window.item_img_zoom = '0';
-		window.promo_discount = null;
-		window.promo_title = null;
-		window.one_click_buy = 1;
-	</script> <!-- gsc start -->
-
-	<!-- gsc end -->
-
-	<!-- ywm start -->
-
-	<!-- ywm end -->
-
-
-	<!-- Подключите тут важные скрипты и стили. -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
 </head>
 
-<body class=" michigan  rate_1 shop_1010" data-template="michigan" data-color-scheme="spicy">
-	<div class="wrapper">
+<body>
 
-		<header>
-			<div class="header-top">
-				<div class="inner">
-					<div class="email-wrapper">
-						<a href="mailto:{{ .Email}}">{{ .Email}}</a>
-					</div>
+	<style>
+		@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-					<div class="phone">
-						<a href="tel:{{ .Phone}}">{{ .Phone}}</a>
-					</div>
+		.btn {
+			display: inline-block;
+			*display: inline;
+			*zoom: 1;
+			padding: 4px 10px 4px;
+			margin-bottom: 0;
+			font-size: 13px;
+			line-height: 18px;
+			color: #333333;
+			text-align: center;
+			text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+			vertical-align: middle;
+			background-color: #f5f5f5;
+			background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+			background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
+			background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+			background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+			background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+			background-image: linear-gradient(top, #ffffff, #e6e6e6);
+			background-repeat: repeat-x;
+			filter: progid:dximagetransform.microsoft.gradient(startColorstr=#ffffff, endColorstr=#e6e6e6, GradientType=0);
+			border-color: #e6e6e6 #e6e6e6 #e6e6e6;
+			border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+			border: 1px solid #e6e6e6;
+			-webkit-border-radius: 4px;
+			-moz-border-radius: 4px;
+			border-radius: 4px;
+			-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+			-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+			cursor: pointer;
+			*margin-left: .3em;
+		}
 
-					<div class="login_or_reg">
-						{{if .IsLogin}}
-						<a>Пользователь:{{ .NameLogin }}</a>
-						<hr>
-						<a class="link_btn" href="/out">Выход</a>
-						{{else}}
-						<a class="link_btn" href="/login">Вход</a>
-						<hr>
-						<a class="link_btn" href="/registration">Регистрация</a>
-						{{end}}
-						{{if .IsAdmin}}
-						<hr>
-						<a class="link_btn" href="/cms">cms</a>
-						{{end}}
-					</div>
-				</div>
-			</div>
+		.btn:hover,
+		.btn:active,
+		.btn.active,
+		.btn.disabled,
+		.btn[disabled] {
+			background-color: #e6e6e6;
+		}
 
-			<div class="header-middle">
-				<div class="inner">
-					<div class="header-middle-left">
-						<div class="logo_wrapper">
-							<a href="/home" class="logo">
-								<img src="{{ .Path_logo_company}}" srcset="{{ .Path_logo_company}} 2x"
-									alt="{{ .Company_name}}" width="250px" height="70px" />
-							</a>
-						</div>
-						<div class="slogan">{{ .Location_office}}</div>
-					</div>
-					<div class="search_form">
-						<!-- FART ORDER  -->
+		.btn-large {
+			padding: 9px 14px;
+			font-size: 15px;
+			line-height: normal;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			border-radius: 5px;
+		}
 
-						<form action="/fast_mail">
-							<button style="width: 100%;" type="submit">Написать письмо*</button>
-						</form>
+		.btn:hover {
+			color: #333333;
+			text-decoration: none;
+			background-color: #e6e6e6;
+			background-position: 0 -15px;
+			-webkit-transition: background-position 0.1s linear;
+			-moz-transition: background-position 0.1s linear;
+			-ms-transition: background-position 0.1s linear;
+			-o-transition: background-position 0.1s linear;
+			transition: background-position 0.1s linear;
+		}
 
-						<br>
+		.btn-primary,
+		.btn-primary:hover {
+			text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+			color: #ffffff;
+		}
 
-						<form method="GET" action="/search">
-							<input type="text" name="search" id="search" placeholder="Найти товар" autocomplete="off"
-								autofocus value="{{.LastValueSearch}}" />
-							<button type="submit">Поиск</button>
-							<div id="autocomplete"></div>
-						</form>
-					</div>
+		.btn-primary.active {
+			color: rgba(255, 255, 255, 0.75);
+		}
 
-					<div class="header-middle-right">
-						<div class="search_open bars" title="Поиск по товарам">
-							<i data-feather="search"></i>
-							<span>Поиск</span>
-						</div>
+		.btn-primary {
+			background-color: #4a77d4;
+			background-image: -moz-linear-gradient(top, #6eb6de, #4a77d4);
+			background-image: -ms-linear-gradient(top, #6eb6de, #4a77d4);
+			background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#6eb6de), to(#4a77d4));
+			background-image: -webkit-linear-gradient(top, #6eb6de, #4a77d4);
+			background-image: -o-linear-gradient(top, #6eb6de, #4a77d4);
+			background-image: linear-gradient(top, #6eb6de, #4a77d4);
+			background-repeat: repeat-x;
+			filter: progid:dximagetransform.microsoft.gradient(startColorstr=#6eb6de, endColorstr=#4a77d4, GradientType=0);
+			border: 1px solid #3762bc;
+			text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.5);
+		}
 
-						{{if .IsLogin}}
-						<div class="orders bars" title="Редактор">
-							<a href="/orders">
+		.btn-primary:hover,
+		.btn-primary:active,
+		.btn-primary.active,
+		.btn-primary.disabled,
+		.btn-primary[disabled] {
+			filter: none;
+			background-color: #4a77d4;
+		}
 
-								<span>Редактор</span>
-							</a>
-						</div>
-						<div class="favorite bars">
-							<a href="/favorites">
+		.btn-block {
+			width: 100%;
+			display: block;
+		}
 
-								<span>Избранное</span>
-							</a>
-						</div>
-						<div class="orders_history bars">
-							<a href="/orders_history">
+		* {
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			-ms-box-sizing: border-box;
+			-o-box-sizing: border-box;
+			box-sizing: border-box;
+		}
 
-								<span>Заказы</span>
-							</a>
-						</div>
+		html {
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
 
-						{{end}}
+		body {
+			width: 100%;
+			height: 100%;
+			font-family: 'Open Sans', sans-serif;
+			background: #092756;
+			background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), -moz-linear-gradient(top, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), -moz-linear-gradient(-45deg, #670d10 0%, #092756 100%);
+			background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), -webkit-linear-gradient(top, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), -webkit-linear-gradient(-45deg, #670d10 0%, #092756 100%);
+			background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), -o-linear-gradient(top, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), -o-linear-gradient(-45deg, #670d10 0%, #092756 100%);
+			background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), -ms-linear-gradient(top, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), -ms-linear-gradient(-45deg, #670d10 0%, #092756 100%);
+			background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), linear-gradient(to bottom, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), linear-gradient(135deg, #670d10 0%, #092756 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3E1D6D', endColorstr='#092756', GradientType=1);
+		}
 
+		.login {
+			position: absolute;
+			top: 30%;
+			left: 50%;
+			margin: -150px 0 0 -150px;
+			width: 300px;
+			height: 300px;
+		}
 
-					</div>
-				</div>
-			</div>
+		.login h1 {
+			color: #fff;
+			text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+			letter-spacing: 1px;
+			text-align: center;
+		}
 
-			<div>
-				<hr>
-			</div>
+		input {
+			width: 100%;
+			margin-bottom: 10px;
+			background: rgba(0, 0, 0, 0.3);
+			border: none;
+			outline: none;
+			padding: 10px;
+			font-size: 13px;
+			color: #fff;
+			text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+			border: 1px solid rgba(0, 0, 0, 0.3);
+			border-radius: 4px;
+			box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.2), 0 1px 1px rgba(255, 255, 255, 0.2);
+			-webkit-transition: box-shadow .5s ease;
+			-moz-transition: box-shadow .5s ease;
+			-o-transition: box-shadow .5s ease;
+			-ms-transition: box-shadow .5s ease;
+			transition: box-shadow .5s ease;
+		}
 
-			<div class="header-bottom">
-				<div class="inner">
-					{{ .PageMenuTemplHtml }}
-				</div>
-			</div>
-
-			<div>
-				<hr>
-			</div>
+		input:focus {
+			box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.4), 0 1px 1px rgba(255, 255, 255, 0.2);
+		}
+	</style>
+	<div class="login">
+		<h1>Вход</h1>
+		<form action="/registration_apply" method="post">
+			<input type="text" name="name" placeholder="Name" required="required" />
+			<input type="text" name="family" placeholder="Family" required="required" />
+			<input type="date" name="birthday" placeholder="Birthday" required="required" />
+			<input type="tel" name="phone" placeholder="Phone" required="required" />
+			<input type="email" name="email" placeholder="Email" required="required" />
+			<input type="text" name="telegram" placeholder="Telegram" required="required" />
+			<input type="text" name="login" placeholder="Username" required="required" />
+			<input type="password" name="password" placeholder="Password" required="required" />
+			<hr>
+			<button type="submit" class="btn btn-primary btn-block btn-large">Регистрация</button>
+		</form>
 	</div>
-	</header>
-	<main>
-		<div class="block main">
-			<div class="inner">
-
-				<div class="content  nositebar  ">
-
-					<div class="auth-inner">
-
-						<div class="breadcrumb">
-							<span><a href="/home">Главная</a> / </span>
-							<span>Регистрация</span>
-						</div>
-
-						<h1 class="shop-title">Регистрация</h1>
-
-						<div class="registration_login_wrapper">
-
-							<div class="form">
-								<form class="login-form" action="/create_user" method="POST">
-									<input class="input_form_field" type="text" name="login" placeholder="Логин"
-										autocomplete="off" required="required" />
-									<input class="input_form_field" type="text" name="password" placeholder="Пароль"
-										autocomplete="off" required="required" />
-									<input class="input_form_field" type="text" name="name" placeholder="Имя"
-										autocomplete="off" required="required" />
-									<input class="input_form_field" type="text" name="family" placeholder="Фамилия"
-										autocomplete="off" required="required" />
-									<input class="input_form_field" type="text" name="phone" placeholder="Телефон"
-										autocomplete="off" required="required" />
-									<input class="input_form_field" type="email" name="email" placeholder="Почта"
-										autocomplete="off" required="required" />
-									<!-- login, password, name, family, phone, email -->
-
-									<br>
-									<input type="submit" value="Зарегистрировать"
-										style="padding:10px; background-color:var(--mainContrastSchemeColor);" />
-									<br>
-									<p class="message">Зарегистрированы? <a href="/login">Войти</a></p>
-								</form>
-
-							</div>
-							<div class="registr_descr">
-								<div class="title">Зачем нужна регистрация?</div>
-								<p>Зарегистрировавшись на сайте, Вы сможете получить личный кабинет, что позволит Вам
-									отслеживать историю заказов, быстрее оформлять заказы в нашем Интернет магазине. Вся
-									информация о Вас будет доступна в любое время, и ее не нужно будет вводить повторно.
-								</p>
-							</div>
-						</div>
-
-					</div>
-
-
-				</div>
-
-			</div>
-		</div>
-	</main>
-	</div>
-	<footer class="block">
-		<div class="top">
-			<div class="inner">
-				<div class="fmenu">
-					<div class="logo_wrapper">
-						<a class="logo" href="/home">
-							<img src="{{ .Path_logo_company}}" alt="Мир книг" />
-						</a>
-					</div>
-					<div class="copyright">&copy;
-						{{ .Copyright}}</div>
-
-				</div>
-			</div>
-			<!-- <div class="fmenu">
-					<div class="footer_subtitle">О магазине</div>
-					<ul>
-						<li>
-							<a href="/home">Главная</a>
-						</li>
-						<li>
-							<a href="/sales">Акции</a>
-						</li> 
-						<li>
-							<a href="/prosv">Просвещение</a>
-						</li>
-						<li>
-							<a href="/agat">Агат</a>
-						</li>
-						<li>
-							<a href="/contacts">Контакты</a>
-						</li>
-						<li>
-							<a href="/news" class="" title="Блог">Блог</a>
-						</li>
-
-					</ul>
-
-				</div> -->
-			<!-- <div class="fmenu catalog">
-					<div class="footer_subtitle">Каталог</div>
-					<ul>
-						<li>
-							<a href="http://new15942715563356.myaddshop.ru/categories/shkafy-i-mebelnye-stenki/"
-								class="" title="Шкафы и мебельные стенки">Шкафы и мебельные стенки</a>
-
-						</li>
-						<li>
-							<a href="http://new15942715563356.myaddshop.ru/categories/stellazhi-i-polki/" class=""
-								title="Стеллажи и полки">Стеллажи и полки</a>
-
-						</li>
-						<li>
-							<a href="http://new15942715563356.myaddshop.ru/categories/komody-i-garderoby/" class=""
-								title="Комоды и гардеробы">Комоды и гардеробы</a>
-
-						</li>
-						<li>
-							<a href="http://new15942715563356.myaddshop.ru/categories/stoly-i-stulya/" class=""
-								title="Столы и стулья">Столы и стулья</a>
-
-						</li>
-					</ul>
-				</div>
-				<div class="fmenu contact_us">
-					<div class="footer_subtitle">Свяжитесь с нами</div>
-					<div class="address">{{ .location_office}}</div>
-					<div>
-						<span class="mail_span">E-mail:</span>
-						<a href="mailto:{{ .Email}}">{{ .Email}}</a>
-					</div>
-
-					<a class="footer_phone" href="tel:{{ .Phone}}">{{ .Phone}}</a> 
-					<div class="social">
-						<a target="_blank" href="https://vk.com/magazin_rzn" class="link_vk"></a>
-						<!-- <a target="_blank" href="https://facebook.com/#" class="link_fb"></a>
-						<a target="_blank" href="https://ok.ru/#" class="link_ok"></a>
-						<a target="_blank" href="https://www.instagram.com/#" class="link_instagram"></a>
-						<a target="_blank" href="https://www.youtube.com/#" class="link_youtube"></a> -->
-		</div>
-
-		</div> -->
-		</div>
-		</div>
-	</footer>
-
-	<!-- 16 ms -->
 </body>
 
 </html>

@@ -1,18 +1,23 @@
 from flask import Flask, request, render_template, make_response, redirect
 from services import parser, models
-from config import Config
 
 import redis, random
+from services.models import Settings, Config
 
-class ManagerDataBase():
+
+class ManagerRedis():
 	def __init__(self):
 		self.cursor = redis.Redis("127.0.0.1", 6379, 0)
+
+	def get_cursor(self) -> redis.Redis:
+		return self.cursor
 
 	def set(self, key:str, value:any) -> None:
 		self.cursor.set(key, value)
 
 class ManagerCookies():
 	def __init__(self, cursor:redis.Redis):
+		print("+++++", cursor)
 		self.cursor = cursor
 
 	def is_match_cookies(self) -> bool:
@@ -20,35 +25,36 @@ class ManagerCookies():
 			return False
 		return True
 	
-	def set_cookies_auth(self):
-		token = str(self.init_token())
-		response = make_response(render_template('settings.html'))
-		response.mimetype = 'text/plain'
-		print(response)
-		# response.set_cookie("token", token)
-		self.cursor.set(token, "test")
-		
+	def set_cookies_auth(self, dict_data_user:dict):
+		token = self.init_token_str()
+		response = redirect("/settings")
+		print(f"RESPONSE RESULT:{response}")
 
+		response.set_cookie("token", token)
+		response.set_cookie("name", dict_data_user['name'])
+		response.set_cookie("family", dict_data_user['family'])
+		response.set_cookie("birthday", dict_data_user['birthday'])
+		response.set_cookie("phone", dict_data_user['phone'])
+		response.set_cookie("email", dict_data_user['email'])
+		response.set_cookie("telegram", dict_data_user['telegram'])
+		response.set_cookie("login", dict_data_user['login'])
+		response.set_cookie("password", dict_data_user['password'])
+		copy_dict_data_user = dict_data_user
+		copy_dict_data_user["settings_pic_profile"] = "https://png.pngtree.com/thumb_back/fh260/background/20230612/pngtree-in-the-style-of-2d-game-art-image_2884743.jpg"
+		self.cursor.hmset(token, copy_dict_data_user)
 		return response
 
-
-	def init_token(self) -> int:
+	def init_token_str(self) -> str:
 		token = random.randint(100_000, 999_999)
-		return token
+		return str(token)
 	
-class Settings():
-	def __init__(self, conf:Config):
-		self.conf = conf
-		self.dict_settings_values = {}
-	def resave_values(self) -> None:
-		self.conf.rewrite_from_dict(self.dict_settings_values)
 
 
 class WebApp():
 	def __init__(self) -> None:
 		self.conf = Config("config.json")
-		self.mng_database = ManagerDataBase()
-		self.mng_cookies = ManagerCookies(self.mng_database)
+		self.mng_redis = ManagerRedis()
+		self.mng_cookies = ManagerCookies(self.mng_redis.get_cursor())
 		self.app = Flask(__name__)
 		self.service_parser = parser.Parser()
 		self.active_number_page = 1
@@ -120,17 +126,21 @@ class WebApp():
 
 		@self.app.route('/settings')
 		def route_settings():
-			self.settings.dict_settings_values = self.conf.data
+			# self.settings.dict_settings_values = self.conf.data
+			cookies_token = request.cookies.get('token')
+			print(cookies_token)
+			temp_data = self.mng_redis.cursor.hgetall(cookies_token)
+			# temp_data = {temp_data}
+			print("TEMP DATA FROM REDIS FOR TOKEN",temp_data)
+			self.settings.dict_settings_values = temp_data
 			return render_template('settings.html', settings=self.settings)
 
 		@self.app.route('/settings_apply', methods=['POST'])
 		def route_settings_apply():
 			form_settings = request.form
-			# self.settings.dict_settings_values = {}
 			for field in form_settings:
 				self.settings.dict_settings_values[field] = form_settings[field]
 			self.conf.rewrite_from_dict(self.settings.dict_settings_values)
-			# self.settings.resave_values()
 			return render_template('settings.html', settings=self.settings)
 
 		@self.app.route('/support')
@@ -159,8 +169,28 @@ class WebApp():
 	
 		@self.app.route('/auth', methods=['POST'])
 		def route_cookies():
+			self.settings.dict_settings_values = self.conf.data
 			if self.mng_cookies.is_match_cookies() == False:
-				return self.mng_cookies.set_cookies_auth()
+				temp_data = {}
+				return self.mng_cookies.set_cookies_auth(temp_data)
+			
+			return redirect('/registration')
+
+		@self.app.route('/registration')
+		def route_registration():
+			return render_template('registration.html')
+
+		@self.app.route('/registration_apply', methods=['POST'])
+		def route_registration_apply():
+			temp_data = {}
+			form_registration = request.form
+			for field in form_registration:
+				temp_data[field] = form_registration[field]
+			# self.conf.rewrite_from_dict(self.settings.dict_settings_values)
+			# return render_template('settings.html', settings=self.settings)
+			print(temp_data)
+			response_redirect_settings = self.mng_cookies.set_cookies_auth(temp_data)
+			return response_redirect_settings
 
 	def start_app(self) -> None:
 		self.app.run(debug=False)
