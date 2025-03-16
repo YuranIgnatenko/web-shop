@@ -2,22 +2,21 @@ from flask import Flask, request, render_template, make_response, redirect
 from services import parser, models
 
 import redis, random
-from services.models import Settings, Config
+from services.models import Settings, Config, User
 
 
 class ManagerRedis():
 	def __init__(self):
 		self.cursor = redis.Redis("127.0.0.1", 6379, 0)
 
-	def get_cursor(self) -> redis.Redis:
-		return self.cursor
-
 	def set(self, key:str, value:any) -> None:
 		self.cursor.set(key, value)
 
+	def set_user(self, user:User) -> None:
+		self.set(user.token, user.to_dict())
+
 class ManagerCookies():
 	def __init__(self, cursor:redis.Redis):
-		print("+++++", cursor)
 		self.cursor = cursor
 
 	def is_match_cookies(self) -> bool:
@@ -25,20 +24,27 @@ class ManagerCookies():
 			return False
 		return True
 	
-	def set_cookies_auth(self, dict_data_user:dict):
+	def set_cookies_auth(self, dict_data_user:dict) :
+		frm = dict_data_user
 		token = self.init_token_str()
 		response = redirect("/settings")
 		print(f"RESPONSE RESULT:{response}")
 
-		response.set_cookie("token", token)
-		response.set_cookie("name", dict_data_user['name'])
-		response.set_cookie("family", dict_data_user['family'])
-		response.set_cookie("birthday", dict_data_user['birthday'])
-		response.set_cookie("phone", dict_data_user['phone'])
-		response.set_cookie("email", dict_data_user['email'])
-		response.set_cookie("telegram", dict_data_user['telegram'])
-		response.set_cookie("login", dict_data_user['login'])
-		response.set_cookie("password", dict_data_user['password'])
+		user = User(
+			token,
+			frm['name'], 
+			frm['family'], 
+			frm['birthday'], 
+			frm['phone'], 
+			frm['email'], 
+			frm['telegram'], 
+			frm['login'], 
+			frm['password'],
+			"https://png.pngtree.com/thumb_back/fh260/background/20230612/pngtree-in-the-style-of-2d-game-art-image_2884743.jpg")
+
+		for k,v in user.to_dict():
+			response.set_cookie(k,v)
+
 		copy_dict_data_user = dict_data_user
 		copy_dict_data_user["settings_pic_profile"] = "https://png.pngtree.com/thumb_back/fh260/background/20230612/pngtree-in-the-style-of-2d-game-art-image_2884743.jpg"
 		self.cursor.hmset(token, copy_dict_data_user)
@@ -54,7 +60,7 @@ class WebApp():
 	def __init__(self) -> None:
 		self.conf = Config("config.json")
 		self.mng_redis = ManagerRedis()
-		self.mng_cookies = ManagerCookies(self.mng_redis.get_cursor())
+		self.mng_cookies = ManagerCookies(self.mng_redis.cursor())
 		self.app = Flask(__name__)
 		self.service_parser = parser.Parser()
 		self.active_number_page = 1
@@ -186,9 +192,9 @@ class WebApp():
 			form_registration = request.form
 			for field in form_registration:
 				temp_data[field] = form_registration[field]
-			# self.conf.rewrite_from_dict(self.settings.dict_settings_values)
-			# return render_template('settings.html', settings=self.settings)
+				
 			print(temp_data)
+			self.mng_redis.set_user()
 			response_redirect_settings = self.mng_cookies.set_cookies_auth(temp_data)
 			return response_redirect_settings
 

@@ -9,9 +9,30 @@ class Product():
 	def __str__(self):
 		return f"{self.title, self.image, self.price, self.description}"
 
-class RedisUser ():
-	def __init__(self):
-		pass
+class User ():
+	def __init__(self, token:str, name:str, family:str, birthday:str, phone:str, email:str, login:str, password:str, image="https://png.pngtree.com/thumb_back/fh260/background/20230612/pngtree-in-the-style-of-2d-game-art-image_2884743.jpg"):
+		self.token = token
+		self.name = name
+		self.family = family
+		self.birthday = birthday
+		self.phone = phone
+		self.email = email
+		self.login = login
+		self.password = password
+		self.image = image
+		
+	def to_dict(self) -> dict:
+		return {
+			"token":self.token,
+			"name":self.name,
+			"family":self.family,
+			"birthday":self.birthday,
+			"phone":self.phone,
+			"email":self.email,
+			"login":self.login,
+			"passwrod":self.password,
+			"image":self.image
+		}
 
 
 class Config():
