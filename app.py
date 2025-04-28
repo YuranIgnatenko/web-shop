@@ -1,5 +1,8 @@
 from flask import Flask, request, render_template, make_response, redirect
-from services import parser, models
+from services import models
+from lib_shop_api import parser
+from lib_shop_api import constants as parser_category
+from lib_shop_api import urls as parser_urls
 
 import redis, random
 from services.models import Settings, Config, User
@@ -60,11 +63,11 @@ class WebApp():
 	def __init__(self) -> None:
 		self.conf = Config("config.json")
 		self.mng_redis = ManagerRedis()
-		self.mng_cookies = ManagerCookies(self.mng_redis.cursor())
+		self.mng_cookies = ManagerCookies(self.mng_redis.cursor)
 		self.app = Flask(__name__)
 		self.service_parser = parser.Parser()
 		self.active_number_page = 1
-		self.collection_products = self.service_parser.get_products(parser.URL_SALES["АКЦИИ"][0])
+		self.collection_products = self.service_parser.get_products(parser_category.K_SALES, 1)
 		self.setup_routes()
 
 		self.settings = Settings(self.conf)
@@ -97,38 +100,46 @@ class WebApp():
 			return collect[self.get_active_index_collection():self.get_active_index_collection()+int(self.settings.dict_settings_values['count_cards_in_page'])]
 
 
+	def render_profile(self) -> str:
+		return render_template('profile.html')
 
-	def render_products(self, key:str, category:str) -> str:
-		for temp_tab in parser.URL_DIRS:
-			for key, value in temp_tab.items():
-				if value[1] == category:
-					return render_template(
-							'products.html',
-							settings = self.settings,
-							array_products = self.get_slice_collection_for_page(self.edit_price_for_products(
-								self.service_parser.get_products(
-									temp_tab[key][0]
-									)
-								)),
-							tab_1 = parser.URL_PC,
-							tab_2 = parser.URL_GAJET,
-							tab_3 = parser.URL_PHOTO_AUDIO,
-							tab_4 = parser.URL_INSTRUMENT,
-							tab_5 = parser.URL_OTHERS,				
-							tab_6 = parser.URL_SALES,
-							)
-		return self.render_products("","smartfony")
+
+	def render_products(self, category:str) -> str:
+		try:category=int(category)
+		except ValueError:pass
+
+		return render_template(
+				'products.html',
+				settings = self.settings,
+				array_products = self.get_slice_collection_for_page(self.edit_price_for_products(
+					self.service_parser.get_products(
+						category, 1
+						)
+					)),
+				tab_1 = ["1" , "2"],
+				tab_2 = ["1" , "2"],
+				tab_3 = ["1" , "2"],
+				tab_4 = ["1" , "2"],
+				tab_5 = ["1" , "2"],
+				tab_6 = ["1" , "2"],
+
+				# tab_2 = parser.URL_GAJET,
+				# tab_3 = parser.URL_PHOTO_AUDIO,
+				# tab_4 = parser.URL_INSTRUMENT,
+				# tab_5 = parser.URL_OTHERS,				
+				# tab_6 = parser.URL_SALES,
+				)
 
 
 	def setup_routes(self):
-		@self.app.route('/<category>')
-		def route_a(category):
-			self.settings.dict_settings_values = self.conf.data
-			return self.render_products("",category)
+		@self.app.route('/profile')
+		def route_profile():
+			return self.render_profile()
+		
 		@self.app.route('/')
 		def route_products():
 			self.settings.dict_settings_values = self.conf.data
-			return self.render_products("","smartfony")
+			return self.render_products(parser_category.K_SALES)
 
 		@self.app.route('/settings')
 		def route_settings():
@@ -197,6 +208,11 @@ class WebApp():
 			self.mng_redis.set_user()
 			response_redirect_settings = self.mng_cookies.set_cookies_auth(temp_data)
 			return response_redirect_settings
+		
+		@self.app.route('/<category>')
+		def route_a(category):
+			self.settings.dict_settings_values = self.conf.data
+			return self.render_products(category)
 
 	def start_app(self) -> None:
 		self.app.run(debug=False)

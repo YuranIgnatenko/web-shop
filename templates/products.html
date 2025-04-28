@@ -23,8 +23,8 @@
 			{% if settings.dict_settings_values['settings_check_gadgets'] == "on" %}
 			<li><a href="#">ГАДЖЕТЫ</a>
 				<ul>
-					{% for key, value in tab_1.items(): %}
-					<li><a href="{{ value[1] }}">{{ key }}</a></li>
+					{% for value in tab_1: %}
+					<li><a href="{{ value }}">{{ value }}</a></li>
 					{% endfor %}
 				</ul>
 			</li>
@@ -32,40 +32,40 @@
 
 			<li><a href="#">ЭЛЕКТРОНИКА</a>
 				<ul>
-					{% for key, value in tab_2.items(): %}
-					<li><a href="{{ value[1] }}">{{ key }}</a></li>
+					{% for value in tab_2: %}
+					<li><a href="{{ value }}">{{ value }}</a></li>
 					{% endfor %}
 				</ul>
 			</li>
 
 			<li><a href="#">ИНСТРУМЕНТЫ</a>
 				<ul>
-					{% for key, value in tab_3.items(): %}
-					<li><a href="{{ value[1] }}">{{ key }}</a></li>
+					{% for value in tab_3: %}
+					<li><a href="{{ value }}">{{ value }}</a></li>
 					{% endfor %}
 				</ul>
 			</li>
 
 			<li><a href="#">ФОТОАУДИОТЕХНИКА</a>
 				<ul>
-					{% for key, value in tab_4.items(): %}
-					<li><a href="{{ value[1] }}">{{ key }}</a></li>
+					{% for value in tab_4: %}
+					<li><a href="{{ value }}">{{ value }}</a></li>
 					{% endfor %}
 				</ul>
 			</li>
 
 			<li><a href="#">ПРОЧЕЕ</a>
 				<ul>
-					{% for key, value in tab_5.items(): %}
-					<li><a href="{{ value[1] }}">{{ key }}</a></li>
+					{% for value in tab_5: %}
+					<li><a href="{{ value }}">{{ value }}</a></li>
 					{% endfor %}
 				</ul>
 			</li>
 
 			<li><a href="#">АКЦИИ</a>
 				<ul>
-					{% for key, value in tab_6.items(): %}
-					<li><a href="{{ value[1] }}">{{ key }}</a></li>
+					{% for value in tab_6: %}
+					<li><a href="{{ value }}">{{ value }}</a></li>
 					{% endfor %}
 				</ul>
 			</li>
